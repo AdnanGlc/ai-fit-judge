@@ -7,7 +7,7 @@ const ZadaciSidebar = () => {
         className="m-2 flex bg-slate-300 pl-2 rounded-md hover:opacity-70 relative"
         key={i}
       >
-        <button>Zadatak {i}</button>
+        <button className="w-full text-left">Zadatak {i}</button>
       </li>
     );
   }

@@ -7,8 +7,10 @@ const ZadaciSidebar = () => {
         className="m-2 flex bg-slate-300 pl-2 rounded-md hover:opacity-70 relative"
         key={i}
       >
-        <button>Zadatak {i}</button>
-        <div className="w-3 h-3 bg-green-500 mt-[6px] rounded-full absolute right-1"></div>
+        <button className="w-full relative text-left">
+          Zadatak {i}
+          <div className="w-3 h-3 bg-green-500 mt-[6px] rounded-full absolute right-1 top-0"></div>
+        </button>
       </li>
     );
   }
