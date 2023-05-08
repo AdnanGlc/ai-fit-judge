@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-const ZadaciSidebar = () => {
-  const [odabraniZadatak, setOdabraniZadatak] = useState(1);
+const ZadaciSidebar = ({ Zadaci, setZadatakIndex, zadatakIndex }) => {
   const listaZadataka = [];
   for (let i = 0; i < Zadaci.length; i++) {
     listaZadataka.push(
@@ -10,12 +9,12 @@ const ZadaciSidebar = () => {
         key={i}
         style={{
           backgroundColor:
-            i === odabraniZadatak ? "rgb(100,116,139)" : "rgb(203,213,250)",
+            i === zadatakIndex ? "rgb(100,116,139)" : "rgb(203,213,250)",
         }}
       >
         <button
           className="w-full relative text-left"
-          onClick={() => setOdabraniZadatak(i)}
+          onClick={() => setZadatakIndex(i)}
         >
           Zadatak {i}
           <div className="w-3 h-3 bg-green-500 mt-[6px] rounded-full absolute right-1 top-0"></div>
