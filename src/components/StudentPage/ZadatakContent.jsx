@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Editor } from "@monaco-editor/react";
+import { BiSun } from "react-icons/bi";
+import axios from "axios";
 
 const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
   //-------------- zadaci --------------//
@@ -12,74 +14,43 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
       setPrikazContent(Zadaci[zadatakIndex].tekstZadatka || "");
     else setPrikazContent(Zadaci[zadatakIndex].usloviZadatka || "");
   };
-  // //-------------- ai api --------------//
-  // const [obrada, setObrada] = useState(false);
-  // const [messages, setMessages] = useState([]);
-  // const API_KEY = "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";
-
-  // const handleSend = async (message) => {
-  //   const newMessage = {
-  //     message: message,
-  //     sender: "user",
-  //   };
-  //   //upade messages state
-  //   const newMessages = [...messages, newMessage];
-  //   setMessages(newMessages);
-  //   //process messages state
-  //   await processMessageToChatGPT(newMessage);
-  // };
-  // async function processMessageToChatGPT(chatMessage) {
-  //   let apiMessage = {
-  //     role: chatMessage.sender === "ChatGPT" ? "asistant" : "user",
-  //     content: chatMessage.message,
-  //   };
-  //   const systemMessage = {
-  //     role: "system",
-  //     content:
-  //       "Ponasaj se kao sudija za pregledanje koda i mozes odgovoriti samo sa 'Da' ili 'Ne'\n" +
-  //       "Za ovaj zadatak:" +
-  //       Zadaci[zadatakIndex].tekstZadatka +
-  //       "\nI za ovaj input:" +
-  //       Zadaci[zadatakIndex].testPrimjeri[tpIndex].ulaz +
-  //       "\nOvo je trazeni output: " +
-  //       Zadaci[zadatakIndex].testPrimjeri[tpIndex].izlaz +
-  //       "da li je ovaj kod daje ispravan ispis, ispis ne mora da bude identican: ",
-  //   };
-  //   const apiRequestBody = {
-  //     model: "gpt-3.5-turbo",
-  //     messages: [systemMessage, apiMessage],
-  //   };
-  //   await fetch("https://api.openai.com/v1/chat/completions", {
-  //     method: "POST",
-  //     headers: {
-  //       Authorization: "Bearer " + API_KEY,
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(apiRequestBody),
-  //   })
-  //     .then((data) => {
-  //       return data.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // }
-  //kod zadataka//
+  //-----------------kompajliranje----------------//
+  const [kod, setKod] = useState(``);
+  const [theme, setTheme] = useState("light");
   useEffect(() => {
     promijeniPrikaz("tekstZadatka");
   }, [zadatakIndex]);
-  const [kod, setKod] = useState("");
   return (
     <div className="w-[75%] bg-white h-auto min-h-[85%] pt-4 m-5 rounded-md flex flex-wrap">
-      {console.log(Zadaci)}
-      {console.log("Zadaci iz zadatak content")}
       <h3 className="w-full text-center text-xl">
         {Zadaci[zadatakIndex].imeZadatka}
       </h3>
       {/*---------------CODE EDITOR--------------- */}
-      <div className="bg-slate-300 m-[1%] w-[30%] p-2 h-auto min-h-[700px] min-w-[350px] relative">
+      <div className="bg-slate-300 m-[1%] w-[30%] p-2 h-[700px] min-w-[350px] relative">
         <p className="pl-2">Kod zadatka:</p>
-        <Editor language="cpp" className="h-[500px] w-[325px] p-1 " />
+        <button
+          className="absolute right-3 top-2 text-slate-700 bg-white w-6 h-6 text-center rounded-full
+          hover:bg-slate-500 hover:text-yellow-400"
+          onClick={() => setTheme(theme === "vs-dark" ? "light" : "vs-dark")}
+        >
+          <BiSun className="ml-1" />
+        </button>
+        <Editor
+          language="cpp"
+          theme={theme}
+          defaultValue="//zalijepite vas kod ovdje"
+          value={`#include<iostream>
+using namespace std;
+int main()
+{
+  cout<<"hello world";
+  return 0;
+}`}
+          onChange={(value) => {
+            setKod(value);
+          }}
+          className="h-[500px] w-[325px] p-1 "
+        />
         <button className="w-[90%] left-[5%] bg-blue-100 border-2 border-slate-500 hover:opacity-70 absolute bottom-28">
           Testiraj kod
         </button>
@@ -119,7 +90,7 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
         <textarea
           readOnly={true}
           value={prikazContent}
-          className="ml-[1%] w-[98%] h-[54%]"
+          className="ml-[1%] w-[98%] h-[54%] p-2"
         ></textarea>
         {/* ..............Test primjeri.............. */}
         <div>

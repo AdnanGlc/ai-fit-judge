@@ -16,8 +16,8 @@ const ZadaciSidebar = ({ Zadaci, setZadatakIndex, zadatakIndex }) => {
           className="w-full relative text-left"
           onClick={() => setZadatakIndex(i)}
         >
-          Zadatak {i}
-          <div className="w-3 h-3 bg-green-500 mt-[6px] rounded-full absolute right-1 top-0"></div>
+          {Zadaci[i].imeZadatka}
+          <div className="w-3 h-3 bg-gray-100  mt-[6px] rounded-full absolute right-1 top-0 border-2 border-gray-700"></div>
         </button>
       </li>
     );
@@ -40,10 +40,6 @@ const ZadaciSidebar = ({ Zadaci, setZadatakIndex, zadatakIndex }) => {
         onChange={(e) => filterZadatke(e.target.value)}
       />
       <ul className="border-slate-500 border-2 w-[90%] rounded-md h-[85%] bg-slate-100">
-        {/* <li className="m-2 flex space-x-[40%] bg-slate-200 pl-2 rounded-md hover:opacity-70">
-          <button>Zadatak 1</button>
-          <div className="w-3 h-3 bg-green-500 mt-[6px] rounded-full"></div>
-        </li> */}
         {listaZadataka}
       </ul>
     </div>

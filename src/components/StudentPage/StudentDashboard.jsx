@@ -14,7 +14,6 @@ const StudentDashboard = () => {
         zadatakIndex={zadatakIndex}
       />
       <ZadatakContent Zadaci={Zadaci} zadatakIndex={zadatakIndex} />
-      {console.log(Zadaci[0].tekstZadatka)}
     </div>
   );
 };
