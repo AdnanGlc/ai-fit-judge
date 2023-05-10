@@ -2,9 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Editor } from "@monaco-editor/react";
 import { BiSun } from "react-icons/bi";
 import axios from "axios";
+import Rezultati from "./Rezultati";
+
+const defaultCode = `#include<iostream>
+using namespace std;
+int main()
+{
+  cout<<"hello world";
+  return 0;
+}
+`;
 
 const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
   //-------------- zadaci --------------//
+  const [theme, setTheme] = useState("light");
+  const [code, setCode] = useState(defaultCode);
   const [tpIndex, setTpIndex] = useState(0); //test primer index
   const [prikazContent, setPrikazContent] = useState(
     Zadaci[0].tekstZadatka || ""
@@ -15,17 +27,18 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
     else setPrikazContent(Zadaci[zadatakIndex].usloviZadatka || "");
   };
   //-----------------kompajliranje----------------//
-  const [kod, setKod] = useState(``);
+  const [isCompiling, setIsCompiling] = useState(false);
   const [output, setOutput] = useState("");
-  const compileCode = async () => {
+  const [rezultati, setRezultati] = useState(["", "", ""]);
+  const compileCode = async (input) => {
     try {
       const response = await axios.post(
         "https://wandbox.org/api/compile.json",
         {
-          code: kod,
-          stdin: Zadaci[zadatakIndex].skriveniTestPrimjeri[0].ulaz,
+          code: code,
+          stdin: input,
           compiler: "gcc-head",
-          options: "-O2 -std=c++17",
+          options: "-O2 -std=c++17 --timeout 10",
         },
         {
           headers: {
@@ -35,12 +48,27 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
       );
       setOutput(response.data.program_output);
       console.log(response.data.program_output);
+      return response.data.program_output;
     } catch (error) {
       console.error(error);
       setOutput("Compilation error");
+      return "Compilation error";
     }
   };
-  const [theme, setTheme] = useState("light");
+  async function testCode() {
+    setIsCompiling(true);
+    const testCases = Zadaci[zadatakIndex].skriveniTestPrimjeri;
+    const results = rezultati;
+    for (let i = 0; i < testCases.length; i++) {
+      const testCase = testCases[i];
+      const result = await compileCode(testCase.ulaz);
+      results[i] = result;
+    }
+    setRezultati(results);
+    setIsCompiling(false);
+  }
+
+  //---------- use effect --------------//
   useEffect(() => {
     promijeniPrikaz("tekstZadatka");
   }, [zadatakIndex]);
@@ -62,49 +90,31 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
         <Editor
           language="cpp"
           theme={theme}
-          defaultValue="//zalijepite vas kod ovdje"
-          value={`#include<iostream>
-using namespace std;
-int main()
-{
-  cout<<"hello world";
-  return 0;
-}`}
+          defaultValue={defaultCode}
           onChange={(value) => {
-            setKod(value);
+            setCode(value);
           }}
           className="h-[500px] w-[325px] p-1 "
         />
         <button
           className="w-[90%] left-[5%] bg-blue-100 border-2 border-slate-500 hover:opacity-70 absolute bottom-28"
-          onClick={compileCode}
+          onClick={testCode}
         >
           Testiraj kod
         </button>
         {/* ............rezultati............ */}
-        <div className="w-[90%] left-[5%] h-[30px] bg-white mt-3 mb-4 flex absolute bottom-14 ">
-          <div
-            className="border-2 border-slate-700 h-full w-1/3 text-center bg-gray-500"
-            style={{
-              backgroundColor: output
-                ? output === Zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz
-                  ? "green"
-                  : "red"
-                : "gray",
-            }}
-          >
-            test primjer 1
-          </div>
-          <div className="border-2 border-slate-700 h-full w-1/3 text-center bg-gray-500">
-            test prijer 2
-          </div>
-          <div className="border-2 border-slate-700 h-full w-1/3 text-center bg-gray-500">
-            test prijer 3
-          </div>
-        </div>
+        {isCompiling && (
+          <p className="bg-blue-200 w-[full] h-[100px] absolute top-[calc(50%-50px)] right-[50%]">
+            Kod se kompajlira...
+          </p>
+        )}
+        <Rezultati
+          rezultati={rezultati}
+          skriveniTestPrimjeri={Zadaci[zadatakIndex].skriveniTestPrimjeri}
+        ></Rezultati>
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
-      <div className="w-[65%] bg-slate-200 min-h-[88%] h-auto m-3">
+      <div className="w-[calc(95%-350px)] bg-slate-200 min-h-[88%] h-auto m-3 max-2xl:w-[calc(90%-330px)]">
         <button
           className="m-[1%] border-2 border-slate-500 p-2 rounded-md hover:opacity-80 hover:bg-blue-200"
           onClick={() => promijeniPrikaz("tekstZadatka")}

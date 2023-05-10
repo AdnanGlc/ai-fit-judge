@@ -10,13 +10,13 @@ export const Zadaci = [
     vremeskoOgranicenje: "2000", //ms
     istekZadatka: "10-05-2023",
     testPrimjeri: [
-      { ulaz: "Unesite broj:\n12", izlaz: "Paran" },
+      { ulaz: "12", izlaz: "Paran" },
       { ulaz: "-1", izlaz: "Neparan" },
       { ulaz: "12412", izlaz: "Paran" },
     ],
     skriveniTestPrimjeri: [
       { ulaz: "1", izlaz: "Neparan" },
-      { ulaz: "5", izlaz: "Paran" },
+      { ulaz: "5", izlaz: "Neparan" },
       { ulaz: "-4", izlaz: "Paran" },
     ],
   },
@@ -31,14 +31,14 @@ export const Zadaci = [
     vremeskoOgranicenje: "2000", //ms
     istekZadatka: "10-05-2023",
     testPrimjeri: [
-      { ulaz: "Unesite brojeve:\n12 23 33", izlaz: "33" },
+      { ulaz: "12 23 33", izlaz: "33" },
       { ulaz: "-1 -123 -124", izlaz: "-1" },
       { ulaz: "0 0 0", izlaz: "0" },
     ],
     skriveniTestPrimjeri: [
-      { ulaz: "4.7 5 5.5", izlaz: "5.5" },
-      { ulaz: "5.51 5.50 5", izlaz: "5.51" },
       { ulaz: "1 2 3", izlaz: "3" },
+      { ulaz: "5 5 5", izlaz: "5" },
+      { ulaz: "5.51 5.50 5", izlaz: "5.51" },
     ],
   },
   {
@@ -75,14 +75,38 @@ export const Zadaci = [
     vremeskoOgranicenje: "2000", //ms
     istekZadatka: "10-05-2023",
     testPrimjeri: [
-      { ulaz: "11 150", izlaz: "18 20 21 24 27" },
-      { ulaz: "11 150", izlaz: "18 20 21 24 27" },
-      { ulaz: "11 150", izlaz: "18 20 21 24 27" },
+      {
+        ulaz: "11 100",
+        izlaz:
+          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+      },
+      {
+        ulaz: "11 100",
+        izlaz:
+          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+      },
+      {
+        ulaz: "11 100",
+        izlaz:
+          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+      },
     ],
     skriveniTestPrimjeri: [
-      { ulaz: "11 150", izlaz: "18 20 21 24 27" },
-      { ulaz: "11 150", izlaz: "18 20 21 24 27" },
-      { ulaz: "11 150", izlaz: "18 20 21 24 27" },
+      {
+        ulaz: "11 100",
+        izlaz:
+          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+      },
+      {
+        ulaz: "11 100",
+        izlaz:
+          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+      },
+      {
+        ulaz: "11 100",
+        izlaz:
+          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+      },
     ],
   },
 ];
