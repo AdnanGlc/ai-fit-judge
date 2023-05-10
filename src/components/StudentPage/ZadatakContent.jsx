@@ -16,6 +16,30 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
   };
   //-----------------kompajliranje----------------//
   const [kod, setKod] = useState(``);
+  const [output, setOutput] = useState("");
+  const compileCode = async () => {
+    try {
+      const response = await axios.post(
+        "https://wandbox.org/api/compile.json",
+        {
+          code: kod,
+          stdin: Zadaci[zadatakIndex].skriveniTestPrimjeri[0].ulaz,
+          compiler: "gcc-head",
+          options: "-O2 -std=c++17",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setOutput(response.data.program_output);
+      console.log(response.data.program_output);
+    } catch (error) {
+      console.error(error);
+      setOutput("Compilation error");
+    }
+  };
   const [theme, setTheme] = useState("light");
   useEffect(() => {
     promijeniPrikaz("tekstZadatka");
@@ -51,18 +75,30 @@ int main()
           }}
           className="h-[500px] w-[325px] p-1 "
         />
-        <button className="w-[90%] left-[5%] bg-blue-100 border-2 border-slate-500 hover:opacity-70 absolute bottom-28">
+        <button
+          className="w-[90%] left-[5%] bg-blue-100 border-2 border-slate-500 hover:opacity-70 absolute bottom-28"
+          onClick={compileCode}
+        >
           Testiraj kod
         </button>
         {/* ............rezultati............ */}
         <div className="w-[90%] left-[5%] h-[30px] bg-white mt-3 mb-4 flex absolute bottom-14 ">
-          <div className="border-2 border-slate-500 h-full w-1/3 text-center bg-green-500">
+          <div
+            className="border-2 border-slate-700 h-full w-1/3 text-center bg-gray-500"
+            style={{
+              backgroundColor: output
+                ? output === Zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz
+                  ? "green"
+                  : "red"
+                : "gray",
+            }}
+          >
             test primjer 1
           </div>
-          <div className="border-2 border-slate-500 h-full w-1/3 text-center bg-green-500">
+          <div className="border-2 border-slate-700 h-full w-1/3 text-center bg-gray-500">
             test prijer 2
           </div>
-          <div className="border-2 border-slate-500 h-full w-1/3 text-center bg-red-500">
+          <div className="border-2 border-slate-700 h-full w-1/3 text-center bg-gray-500">
             test prijer 3
           </div>
         </div>
@@ -90,7 +126,7 @@ int main()
         <textarea
           readOnly={true}
           value={prikazContent}
-          className="ml-[1%] w-[98%] h-[54%] p-2"
+          className="ml-[1%] w-[98%] h-[54%] p-2 "
         ></textarea>
         {/* ..............Test primjeri.............. */}
         <div>
@@ -123,5 +159,4 @@ int main()
     </div>
   );
 };
-
 export default ZadatakContent;

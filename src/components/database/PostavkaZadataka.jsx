@@ -5,6 +5,10 @@ export const Zadaci = [
       "Napisi program koji ispituje da li je broj paran ili neparan",
     usloviZadatka: "Zabranjeno koristiti %\nZabranjeno koristiti for petlju",
     slika: "",
+    podudarnost: "identicna",
+    vidljivost: "vidljiv",
+    vremeskoOgranicenje: "2000", //ms
+    istekZadatka: "10-05-2023",
     testPrimjeri: [
       { ulaz: "Unesite broj:\n12", izlaz: "Paran" },
       { ulaz: "-1", izlaz: "Neparan" },
@@ -12,8 +16,8 @@ export const Zadaci = [
     ],
     skriveniTestPrimjeri: [
       { ulaz: "1", izlaz: "Neparan" },
-      { ulaz: "5", izlaz: "Broj je neparan" },
-      { ulaz: "-4", izlaz: "paran" },
+      { ulaz: "5", izlaz: "Paran" },
+      { ulaz: "-4", izlaz: "Paran" },
     ],
   },
   {
@@ -22,6 +26,10 @@ export const Zadaci = [
       "Napisi program koji trazi od korisnika unos 3 broja i ispisuje najveci broj",
     usloviZadatka: "Zabranjeno koristiti funkciju max()",
     slika: "",
+    podudarnost: "identicna",
+    vidljivost: "vidljiv",
+    vremeskoOgranicenje: "2000", //ms
+    istekZadatka: "10-05-2023",
     testPrimjeri: [
       { ulaz: "Unesite brojeve:\n12 23 33", izlaz: "33" },
       { ulaz: "-1 -123 -124", izlaz: "-1" },
@@ -40,6 +48,10 @@ export const Zadaci = [
     usloviZadatka:
       "Mora se koristiti rkurzija\nUkoliko se desio owerflow nad intom vratiti '0'",
     slika: "",
+    podudarnost: "identicna",
+    vidljivost: "vidljiv",
+    vremeskoOgranicenje: "2000", //ms
+    istekZadatka: "10-05-2023",
     testPrimjeri: [
       { ulaz: "1", izlaz: "1" },
       { ulaz: "5", izlaz: "5" },
@@ -58,6 +70,10 @@ export const Zadaci = [
     usloviZadatka:
       "Zabranjeno koristiti pomocne biblioteke\nZabranjeno obrnuti broj uz pomoc stringova",
     slika: "",
+    podudarnost: "identicna",
+    vidljivost: "vidljiv",
+    vremeskoOgranicenje: "2000", //ms
+    istekZadatka: "10-05-2023",
     testPrimjeri: [
       { ulaz: "11 150", izlaz: "18 20 21 24 27" },
       { ulaz: "11 150", izlaz: "18 20 21 24 27" },
