@@ -18,9 +18,19 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
   const [theme, setTheme] = useState("light");
   const [code, setCode] = useState(defaultCode);
   const [tpIndex, setTpIndex] = useState(0); //test primer index
-  const [prikazContent, setPrikazContent] = useState(
-    Zadaci[0].tekstZadatka || ""
+  const [rezultati, setRezultati] = useState(["", "", ""]);
+  const [kodovi, setKodovi] = useState(
+    new Array(Zadaci.length).fill(defaultCode)
   );
+  const [prikazContent, setPrikazContent] = useState(Zadaci[0].tekstZadatka);
+
+  //------------funckcije------------------//
+  const saveCodeChange = (value) => {
+    let tempKodovi = kodovi;
+    tempKodovi[zadatakIndex] = value;
+    setKodovi(tempKodovi);
+    setCode(value); //ne radi dok se ne napravi neka promjena na kodu
+  };
   const promijeniPrikaz = (p) => {
     if (p === "tekstZadatka")
       setPrikazContent(Zadaci[zadatakIndex].tekstZadatka || "");
@@ -28,8 +38,6 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
   };
   //-----------------kompajliranje----------------//
   const [isCompiling, setIsCompiling] = useState(false);
-  const [output, setOutput] = useState("");
-  const [rezultati, setRezultati] = useState(["", "", ""]);
   const compileCode = async (input) => {
     try {
       const response = await axios.post(
@@ -46,17 +54,18 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
           },
         }
       );
-      setOutput(response.data.program_output);
       console.log(response.data.program_output);
-      return response.data.program_output;
+      return response.data.program_output
+        ? response.data.program_output
+        : "Bad implemnation";
     } catch (error) {
       console.error(error);
-      setOutput("Compilation error");
       return "Compilation error";
     }
   };
   async function testCode() {
     setIsCompiling(true);
+    setRezultati([]);
     const testCases = Zadaci[zadatakIndex].skriveniTestPrimjeri;
     const results = rezultati;
     for (let i = 0; i < testCases.length; i++) {
@@ -90,10 +99,11 @@ const ZadatakContent = ({ Zadaci, zadatakIndex }) => {
         <Editor
           language="cpp"
           theme={theme}
-          defaultValue={defaultCode}
+          defaultValue={kodovi[zadatakIndex]}
           onChange={(value) => {
-            setCode(value);
+            saveCodeChange(value);
           }}
+          value={kodovi[zadatakIndex]}
           className="h-[500px] w-[325px] p-1 "
         />
         <button

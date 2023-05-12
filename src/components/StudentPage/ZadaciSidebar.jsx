@@ -1,6 +1,17 @@
 import React from "react";
-import { useState } from "react";
-const ZadaciSidebar = ({ Zadaci, setZadatakIndex, zadatakIndex }) => {
+const ZadaciSidebar = ({ Zadaci, setZadatakIndex, zadatakIndex, data }) => {
+  let completionColors = new Array(Zadaci.length).fill("rgb(153,163,200)");
+  for (let i = 0; i < Zadaci.length; i++) {
+    for (let j = 0; j < data[0].kodovi.length; j++) {
+      if (Zadaci[i].zadatakID == data[0].kodovi[j].zadatkakID) {
+        if (data[0].kodovi[j].tacnost === "0") completionColors[i] = "red";
+        else if (data[0].kodovi[j].tacnost === "1")
+          completionColors[i] = "green";
+        else if (data[0].kodovi[j].tacnost === "2")
+          completionColors[i] = "orange";
+      }
+    }
+  }
   const listaZadataka = [];
   for (let i = 0; i < Zadaci.length; i++) {
     listaZadataka.push(
@@ -17,7 +28,10 @@ const ZadaciSidebar = ({ Zadaci, setZadatakIndex, zadatakIndex }) => {
           onClick={() => setZadatakIndex(i)}
         >
           {Zadaci[i].imeZadatka}
-          <div className="w-3 h-3 bg-gray-100  mt-[6px] rounded-full absolute right-1 top-0 border-2 border-gray-700"></div>
+          <div
+            className="w-3 h-3 bg-gray-100  mt-[6px] rounded-full absolute right-1 top-0 border-2 border-gray-700"
+            style={{ backgroundColor: completionColors[i] }}
+          ></div>
         </button>
       </li>
     );
@@ -33,6 +47,7 @@ const ZadaciSidebar = ({ Zadaci, setZadatakIndex, zadatakIndex }) => {
   };
   return (
     <div className="bg-white w-[15%] h-[85vh] m-5 rounded-md pl-[1.5%] pt-4">
+      {console.log(completionColors)}
       <p>Zadaci:</p>
       <input
         placeholder="Pretrazi..."

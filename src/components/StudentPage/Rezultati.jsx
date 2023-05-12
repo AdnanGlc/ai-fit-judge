@@ -9,10 +9,14 @@ const Rezultati = ({ rezultati, skriveniTestPrimjeri }) => {
       rezultati[0] === skriveniTestPrimjeri[0].izlaz
         ? "rgb(74,222,128)"
         : "rgb(248,113,113)";
+  }
+  if (rezultati[1]) {
     color2 =
       rezultati[1] === skriveniTestPrimjeri[1].izlaz
         ? "rgb(74,222,128)"
         : "rgb(248,113,113)";
+  }
+  if (rezultati[2]) {
     color3 =
       rezultati[2] === skriveniTestPrimjeri[2].izlaz
         ? "rgb(74,222,128)"
