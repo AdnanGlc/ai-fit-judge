@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button:hover {
+  border-color: transparent;
+}
+
+html {
+  background-color: #353535;
+}
