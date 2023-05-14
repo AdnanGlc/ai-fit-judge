@@ -2,8 +2,8 @@ import React from "react";
 
 const PostavkaZadatka = () => {
   return (
-    <div className="w-[75%] bg-white h-auto min-h-[85%] pt-4 m-5 rounded-md flex flex-wrap">
-      <div className="ml-[2%] w-[96%] bg-blue-300 inline-flex p-2 m-2 space-x-20">
+    <div className="w-[75%] bg-white h-auto min-h-[85%] pt-4 ml-5 rounded-md flex flex-wrap">
+      <div className="ml-[2%] w-[96%] bg-indigo-600 inline-flex p-2 m-2 space-x-20">
         <button className="bg-gray-200">Vidljivost</button>
         <p>Vremensko ogranicenje(u sekundama)</p>
         <input value={10} type="number" min={1} max={60} />
@@ -11,14 +11,14 @@ const PostavkaZadatka = () => {
         <input type="datetime-local" />
       </div>
       {/* --------------------tekst i uslovi zadatka zadatka-------------------- */}
-      <div className="ml-[2%] w-[96%] bg-blue-300 h-auto border-2 border-slate-500 rounded-md">
+      <div className="ml-[2%] w-[96%] bg-indigo-600 h-auto border-2 border-slate-500 rounded-md">
         <h2 className="ml-[1%] mt-2 font-bold">Tekst zadatka</h2>
         <textarea className=" bg-slate-100 w-[98%] h-[350px] m-[1%] p-1"></textarea>
         <h2 className="ml-[1%] font-bold">Uslovi zadatka</h2>
         <textarea className="bg-slate-100 w-[98%] h-[150px] m-[1%] p-1"></textarea>
       </div>
       {/* --------------------Kod zadatka, primjeri inputa i outputa--------------------  */}
-      <div className="ml-[2%] w-[96%] bg-blue-300 mt-2 border-2 border-slate-500 rounded-md flex flex-wrap">
+      <div className="ml-[2%] w-[96%] bg-indigo-600 mt-2 border-2 border-slate-500 rounded-md flex flex-wrap">
         <h2 className="ml-[2%] pt-2 w-[96%] font-bold">Ispravan kod zadatka</h2>
         <textarea
           className="bg-slate-100 w-[38%] h-[550px] m-[1%] p-1"
@@ -37,7 +37,7 @@ const PostavkaZadatka = () => {
             Random ispis
           </button>
           {/* ...input div 1... */}
-          <div className="p-1 bg-blue-300 border-2 border-slate-500 hover:border-blue-200 focus-within:border-blue-200 rounded-md">
+          <div className="p-1 bg-blue-300 border-2 border-slate-500 mt-1 hover:border-blue-200 focus-within:border-blue-200 rounded-md">
             <div className="w-[98%] m-[1%] bg-slate-100">
               <h3 className="ml-2 font-bold">Primjer inputa 1</h3>
               <textarea
@@ -55,7 +55,7 @@ const PostavkaZadatka = () => {
             </div>
           </div>
           {/* drugi primjer */}
-          <div className="p-1 bg-blue-300 border-2  border-slate-500  hover:border-blue-200 focus-within:border-blue-200 rounded-md">
+          <div className="p-1 bg-blue-300 border-2  border-slate-500 mt-1 hover:border-blue-200 focus-within:border-blue-200 rounded-md">
             <div className="w-[98%] m-[1%] bg-slate-100">
               <h3 className="ml-2 font-bold">Primjer inputa 2</h3>
               <textarea
@@ -74,7 +74,7 @@ const PostavkaZadatka = () => {
           </div>
           {/* treci div */}
           {/* ...input div... */}
-          <div className="p-1 bg-blue-300 border-2 border-slate-500  hover:border-blue-200 focus-within:border-blue-200 rounded-md">
+          <div className="p-1 bg-blue-300 border-2 border-slate-500 mt-1 hover:border-blue-200 focus-within:border-blue-200 rounded-md">
             <div className="w-[98%] m-[1%] bg-slate-100">
               <h3 className="ml-2 font-bold">Primjer inputa 3</h3>
               <textarea
