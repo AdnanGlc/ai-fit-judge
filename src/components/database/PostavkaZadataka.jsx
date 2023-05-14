@@ -57,13 +57,13 @@ export const Zadaci = [
     istekZadatka: "10-05-2023",
     testPrimjeri: [
       { ulaz: "1", izlaz: "1" },
-      { ulaz: "5", izlaz: "5" },
-      { ulaz: "9", izlaz: "34" },
+      { ulaz: "0", izlaz: "1" },
+      { ulaz: "9", izlaz: "55" },
     ],
     skriveniTestPrimjeri: [
       { ulaz: "70", izlaz: "0" },
-      { ulaz: "2", izlaz: "1" },
-      { ulaz: "42", izlaz: "267914296" },
+      { ulaz: "2", izlaz: "2" },
+      { ulaz: "42", izlaz: "433494437" },
     ],
   },
   {
