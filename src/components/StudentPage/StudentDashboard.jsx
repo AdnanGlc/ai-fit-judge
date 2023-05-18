@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ZadaciSidebar from "./ZadaciSidebar";
 import ZadatakContent from "./ZadatakContent";
 import { Zadaci } from "../database/PostavkaZadataka";
-import { StudentData } from "../database/StudentData";
 import axios from "axios";
 
-/*
-colors:
-#353535 dark-gray
-#3C6E71 light-blue
-#D9D9D9 light-gray
-#284B63 dark blue
-
-*/
 const defaultCode = `#include<iostream>
 using namespace std;
 int main()
@@ -24,12 +15,19 @@ int main()
 
 const StudentDashboard = () => {
   const [zadatakIndex, setZadatakIndex] = useState(0);
-  const [data, setData] = useState(StudentData);
   //----------------------------------------------//
   const [code, setCode] = useState("");
   const [rezultati, setRezultati] = useState(["", "", ""]);
   const [sviRezultati, setSviRezultati] = useState(
     new Array(Zadaci.length).fill(["", "", ""])
+  );
+  const [brojIspravnih, setBrojIspravnih] = useState(0);
+  const [colors, setColors] = useState(
+    new Array(Zadaci.length).fill([
+      "rgb(107,114,128)",
+      "rgb(107,114,128)",
+      "rgb(107,114,128)",
+    ])
   );
   const [kodovi, setKodovi] = useState(
     new Array(Zadaci.length).fill(defaultCode)
@@ -83,9 +81,28 @@ const StudentDashboard = () => {
       results[i] = result;
     }
     setRezultati(results);
-    //update svih rezultata
     let tempSviRezultati = sviRezultati;
     tempSviRezultati[zadatakIndex] = results;
+    //hard kodiranje boja i broja ispravnih
+    let tempAllColors = colors,
+      tempColors = [],
+      tempBrISpravnih = brojIspravnih;
+    if (results[0] === Zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz) {
+      tempColors.push("#2bc016");
+      tempBrISpravnih++;
+    } else tempColors.push("#ea2b1f");
+    if (results[1] === Zadaci[zadatakIndex].skriveniTestPrimjeri[1].izlaz) {
+      tempColors.push("#2bc016");
+      tempBrISpravnih++;
+    } else tempColors.push("#ea2b1f");
+    if (results[2] === Zadaci[zadatakIndex].skriveniTestPrimjeri[2].izlaz) {
+      tempColors.push("#2bc016");
+      tempBrISpravnih++;
+    } else tempColors.push("#ea2b1f");
+    setBrojIspravnih(tempBrISpravnih);
+    tempAllColors[zadatakIndex] = tempColors;
+    setColors(tempAllColors);
+    //
     setSviRezultati(tempSviRezultati);
     setIsCompiling(false);
   }
@@ -100,21 +117,24 @@ const StudentDashboard = () => {
     console.log(tempZadaci);
   };
   //---------- use effect --------------//
-  useEffect(() => {
-    promijeniPrikaz("tekstZadatka");
-    setCode(kodovi[zadatakIndex]);
-  }, [zadatakIndex]);
+  const promijeniZadatak = (index) => {
+    setPrikazContent(Zadaci[index].tekstZadatka);
+    setZadatakIndex(index);
+    setCode(kodovi[index]);
+    setRezultati(sviRezultati[index]);
+  };
   return (
-    <div className="bg-[#353535] w-full h-auto min-h-[101vh] flex flex-wrap">
+    <div className="bg-[#353535] w-full h-full min-h-[800px] flex flex-wrap">
       <h1 className="w-full text-center text-4xl pt-3 text-white hover:text-[#284B63]">
         @Memset Ai Judge
       </h1>
       <ZadaciSidebar
         Zadaci={Zadaci}
-        setZadatakIndex={setZadatakIndex}
+        promijeniZadatak={promijeniZadatak}
         zadatakIndex={zadatakIndex}
-        data={data}
         filterZadatke={filterZadatke}
+        colors={colors}
+        brojIspravnih={brojIspravnih}
       />
       <ZadatakContent
         Zadaci={Zadaci}
@@ -125,8 +145,9 @@ const StudentDashboard = () => {
         isCompiling={isCompiling}
         testCode={testCode}
         prikazContent={prikazContent}
-        rezultati={sviRezultati[zadatakIndex]}
+        rezultati={rezultati}
         promijeniPrikaz={promijeniPrikaz}
+        colors={colors[zadatakIndex]}
       />
     </div>
   );

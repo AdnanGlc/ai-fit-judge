@@ -1,26 +1,28 @@
 import React from "react";
 const ZadaciSidebar = ({
   Zadaci,
-  setZadatakIndex,
+  promijeniZadatak,
   zadatakIndex,
-  data,
+  colors,
   filterZadatke,
+  brojIspravnih,
 }) => {
   let completionColors = new Array(Zadaci.length).fill("rgb(153,163,200)");
-  for (let i = 0; i < Zadaci.length; i++) {
-    for (let j = 0; j < data[0].kodovi.length; j++) {
-      if (Zadaci[i].zadatakID === data[0].kodovi[j].zadatkakID) {
-        if (data[0].kodovi[j].tacnost === "0") completionColors[i] = "red";
-        else if (data[0].kodovi[j].tacnost === "3")
-          completionColors[i] = "green";
-        else if (
-          data[0].kodovi[j].tacnost === "2" ||
-          data[0].kodovi[j].tacnost === "1"
-        )
-          completionColors[i] = "orange";
-        else completionColors[i] = "gray";
-      }
-    }
+  for (let i = 0; i < colors.length; i++) {
+    if (colors[i][0] === "rgb(107,114,128)") continue;
+    if (
+      colors[i][0] === "#2bc016" && //tacna sva tri test primjera
+      colors[i][0] === colors[i][1] &&
+      colors[i][0] === colors[i][2]
+    )
+      completionColors[i] = "green";
+    else if (
+      colors[i][0] === "#ea2b1f" && //tacna sva tri test primjera
+      colors[i][0] === colors[i][1] &&
+      colors[i][0] === colors[i][2]
+    )
+      completionColors[i] = "red";
+    else completionColors[i] = "orange";
   }
   const listaZadataka = [];
   for (let i = 0; i < Zadaci.length; i++) {
@@ -36,7 +38,7 @@ const ZadaciSidebar = ({
       >
         <button
           className="w-full relative text-left"
-          onClick={() => setZadatakIndex(i)}
+          onClick={(e) => promijeniZadatak(i)}
         >
           {Zadaci[i].imeZadatka}
           <div
@@ -48,7 +50,7 @@ const ZadaciSidebar = ({
     );
   }
   return (
-    <div className="bg-[#3C6E71] w-[15%] h-[90vh] m-5 pl-[1.5%] pt-4 rounded-md">
+    <div className="bg-[#3C6E71] w-[15%] h-[94.7vh] m-5 pl-[1.5%] pt-4 rounded-md min-h-[650px]">
       <p className="text-white font-bold">Zadaci:</p>
       <input
         placeholder="Pretrazi..."
@@ -58,6 +60,9 @@ const ZadaciSidebar = ({
       <ul className="border-slate-500 border-2 w-[90%] h-[85%] bg-slate-100 overflow-y-scroll">
         {listaZadataka}
       </ul>
+      <p className="bg-[#d9d9d9] w-[90%] p-1 text-right">
+        Uradjeno: {brojIspravnih}/{Zadaci.length * 3}
+      </p>
     </div>
   );
 };
