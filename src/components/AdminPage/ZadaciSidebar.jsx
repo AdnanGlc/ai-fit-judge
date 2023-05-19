@@ -4,7 +4,7 @@ import { MdAddCircle } from "react-icons/md";
 
 const ZadaciSidebar = () => {
   const listaZadataka = [];
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 100; i++) {
     listaZadataka.push(
       <li
         className="mt-3 flex bg-white p-1 rounded-md hover:opacity-70 relative"
@@ -16,7 +16,7 @@ const ZadaciSidebar = () => {
   }
 
   return (
-    <div className="bg-indigo-600	 md:w-[15%] h-full md:h-[85vh] m-5 rounded-md border-1 pt-3 pb-11 flex flex-wrap justify-center">
+    <div className="sidebar  md:w-[15%] h-full md:h-[85vh] m-5 rounded-md border-1 pt-3 pb-11 flex flex-wrap justify-center">
       <div className="zadaci">
         <p>Zadaci:</p>
         <MdAddCircle className="add"></MdAddCircle>
