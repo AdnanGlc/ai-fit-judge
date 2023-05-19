@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rezultati = ({ rezultati, skriveniTestPrimjeri }) => {
+const Rezultati = ({ rezultati, skriveniTestPrimjeri, colors }) => {
   let color1 = "rgb(107,114,128)";
   let color2 = color1;
   let color3 = color1;
@@ -17,22 +17,22 @@ const Rezultati = ({ rezultati, skriveniTestPrimjeri }) => {
       rezultati[2] === skriveniTestPrimjeri[2].izlaz ? "#2bc016" : "#ea2b1f";
   }
   return (
-    <div className="w-[95%] left-[2.5%] h-[30px] mb-4 flex absolute bottom-[70px]">
+    <div className="w-[95%] left-[2.5%] h-[30px] mb-4 flex absolute bottom-0">
       <div
         className="border-white border-2 border-r-0 h-full w-1/3 text-center rounded-l-lg uppercase text-sm pt-1 "
-        style={{ backgroundColor: color1 }}
+        style={{ backgroundColor: colors[0] }}
       >
         test primjer 1
       </div>
       <div
         className="border-2 border-white h-full w-1/3 text-center uppercase text-sm pt-1 "
-        style={{ backgroundColor: color2 }}
+        style={{ backgroundColor: colors[1] }}
       >
         test primjer 2
       </div>
       <div
         className="border-2 border-white h-full border-l-0 w-1/3 text-center rounded-r-lg uppercase text-sm pt-1"
-        style={{ backgroundColor: color3 }}
+        style={{ backgroundColor: colors[2] }}
       >
         test primjer 3
       </div>

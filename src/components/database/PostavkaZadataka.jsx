@@ -4,7 +4,7 @@ export const Zadaci = [
     imeZadatka: "Paran ili Neparan",
     tekstZadatka:
       "Napisi program koji ispituje da li je broj paran ili neparan",
-    usloviZadatka: "Zabranjeno koristiti %\nZabranjeno koristiti for petlju",
+    usloviZadatka: "Zabranjeno koristiti %",
     slika: "",
     podudarnost: "identicna",
     vidljivost: "vidljiv",

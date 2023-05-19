@@ -3,8 +3,9 @@ import StudentLoginPage from "./components/StudentLoginPage";
 import StudentDashboard from "./components/StudentPage/StudentDashboard";
 import AdminDashboard from "./components/AdminPage/AdminDashboard";
 import ResultsTable from "./components/AdminPage/ResultsTable";
-import { StudentData } from "./components/database/StudentData";
+import Testieanje from "./components/StudentPage/Testiranje";
 
+//api key: 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
 function App() {
   return (
     <Routes>
@@ -12,10 +13,8 @@ function App() {
       <Route path="admin-login" element={""} />
       <Route path="student-dashboard" element={<StudentDashboard />} />
       <Route path="admin-dashboard" element={<AdminDashboard />} />
-      <Route
-        path="/admin-dashboard/results"
-        element={<ResultsTable data={StudentData} />}
-      />
+      <Route path="/admin-dashboard/results" element={<ResultsTable />} />
+      <Route path="/testiranje" element={<Testieanje />} />
     </Routes>
   );
 }

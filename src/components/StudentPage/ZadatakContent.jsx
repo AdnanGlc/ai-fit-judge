@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import { BiSun } from "react-icons/bi";
 import Rezultati from "./Rezultati";
+import "./scrollbarStyle.css";
 
 const ZadatakContent = ({
   Zadaci,
@@ -13,6 +14,7 @@ const ZadatakContent = ({
   saveCodeChange,
   promijeniPrikaz,
   prikazContent,
+  colors,
 }) => {
   //-------------- zadaci --------------//
   const [theme, setTheme] = useState("vs-dark");
@@ -21,14 +23,14 @@ const ZadatakContent = ({
   return (
     //container
     <div
-      className="w-[75%] bg-[#D9D9D9] h-auto  pt-4 m-5
-     rounded-md flex flex-wrap"
+      className="w-[75%] bg-[#D9D9D9] pt-4 m-5
+     rounded-md flex flex-wrap h-[90vh] min-h-[750px] min-w-[900px] max-[1537]:min-h-[800px]"
     >
       <h3 className="w-full text-center text-xl h-12 mb-0">
         {Zadaci[zadatakIndex].imeZadatka}
       </h3>
       {/*---------------CODE EDITOR--------------- */}
-      <div className="bg-[#3C6E71] m-[1%] w-[30%] p-2 min-w-[350px] relative min-h-[500px] max-2xl:min-h-[700px] h-auto mt-[-150px]">
+      <div className="bg-[#3C6E71] m-[1%] w-[30%] p-2 min-w-[350px] relative max-2xl:min-h-[700px] min-h-[628px]">
         <p className="pl-2 text-white font-bold">Kod zadatka:</p>
         <button
           className="absolute right-3 top-2 text-slate-700 bg-white w-6 h-6 text-center rounded-full
@@ -49,7 +51,7 @@ const ZadatakContent = ({
         />
         <button
           className="w-[95%] left-[2.5%] bg-[#284B63] border-2 border-white text-white font-bold
-           rounded-md hover:opacity-95 absolute bottom-[130px]"
+           rounded-md hover:opacity-95 absolute bottom-[50px]"
           onClick={testCode}
         >
           Testiraj kod
@@ -63,10 +65,11 @@ const ZadatakContent = ({
         <Rezultati
           rezultati={rezultati}
           skriveniTestPrimjeri={Zadaci[zadatakIndex].skriveniTestPrimjeri}
+          colors={colors}
         ></Rezultati>
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
-      <div className="w-[calc(95%-350px)] bg-[#3C6E71] h-auto m-3 max-2xl:w-[calc(90%-330px)] mt-[-150px]">
+      <div className="w-[calc(90%-300px)] bg-[#3C6E71] overflow-y-scroll m-3 h-[90%]">
         <button
           className="m-[1%] bg-[#284B63] text-white border-2 border-white font-semibold p-2 rounded-md hover:opacity-80"
           onClick={() => promijeniPrikaz("tekstZadatka")}
