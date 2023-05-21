@@ -4,9 +4,9 @@ export const Zadaci = [
     imeZadatka: "Paran ili Neparan",
     tekstZadatka:
       "Napisi program koji ispituje da li je broj paran ili neparan",
-    usloviZadatka: "Zabranjeno koristiti %",
+    usloviZadatka: "Zabranjeno koristiti % za testiranje parnosti",
     slika: "",
-    podudarnost: "identicna",
+    podudarnost: "ispravna",
     vidljivost: "vidljiv",
     vremeskoOgranicenje: "2000", //ms
     istekZadatka: "10-05-2023",
@@ -28,7 +28,7 @@ export const Zadaci = [
       "Napisi program koji trazi od korisnika unos 3 broja i ispisuje najveci broj",
     usloviZadatka: "Zabranjeno koristiti funkciju max()",
     slika: "",
-    podudarnost: "identicna",
+    podudarnost: "ispravna",
     vidljivost: "vidljiv",
     vremeskoOgranicenje: "2000", //ms
     istekZadatka: "10-05-2023",
@@ -51,7 +51,7 @@ export const Zadaci = [
     usloviZadatka:
       "Mora se koristiti rkurzija\nUkoliko se desio owerflow nad intom vratiti '0'",
     slika: "",
-    podudarnost: "identicna",
+    podudarnost: "ispravna",
     vidljivost: "vidljiv",
     vremeskoOgranicenje: "2000", //ms
     istekZadatka: "10-05-2023",
@@ -113,4 +113,118 @@ export const Zadaci = [
       },
     ],
   },
+  {
+    zadatakID: "5",
+    imeZadatka: "Trougao",
+    tekstZadatka:
+      "Traziti od korisnika da unese broj n, zatim iscrtati trougao visine n",
+    usloviZadatka: 'Iskljucivo koristiti znak "#"',
+    slika: "",
+    podudarnost: "identicna",
+    vidljivost: "vidljiv",
+    vremeskoOgranicenje: "2000", //ms
+    istekZadatka: "10-05-2023",
+    testPrimjeri: [
+      {
+        ulaz: "3",
+        izlaz: `  #
+ # #
+#####`,
+      },
+      {
+        ulaz: "4",
+        izlaz: `   #
+  # #
+ #   #
+#######`,
+      },
+      {
+        ulaz: "1",
+        izlaz: `#`,
+      },
+    ],
+    skriveniTestPrimjeri: [
+      {
+        ulaz: "0",
+        izlaz: "",
+      },
+      {
+        ulaz: "-1",
+        izlaz: "",
+      },
+      {
+        ulaz: "7",
+        izlaz: `      #
+     # #
+    #   #
+   #     #
+  #       #
+ #         #
+#############`,
+      },
+    ],
+  },
 ];
+//kodovi
+/*
+
+zadatak 4:
+#include<iostream>
+using namespace std;
+int fibo(int a)
+{
+  if(a==1 || a==0)return 1;
+  else{
+    int temp= fibo(a-1) + fibo(a-2);
+    if(temp<0)return 0;
+    else return temp;
+  }
+}
+int main()
+{
+  int a;cin>>a;
+  cout<<fibo(a);
+  return 0;
+}
+zadatak 4 (bez sa neispravnim uslovima):
+#include<iostream>
+using namespace std;
+int main()
+{
+  int n;cin>>n;
+  int a=1,b=1,c=1;
+  for(int i=2;i<=n;i++)
+  {
+      a=b+c;
+      c=b;
+      b=a;
+  }
+  cout<<a;
+  return 0;
+}
+zadatak 5:
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n,k=0;cin>>n;
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j=0;j<n-k-1;j++)cout<<" ";
+        cout<<"#";
+        if(i)
+        {
+            for(int j=0;j<k*2-1;j++)cout<<" ";
+            cout<<"#";
+        }
+        cout<<endl;
+        k++;
+    }
+    for(int i=0;i<2*n-1;i++)cout<<"#";
+    return 0;
+}
+
+
+*/

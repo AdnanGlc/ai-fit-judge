@@ -5,7 +5,7 @@ const ZadaciSidebar = ({
   zadatakIndex,
   colors,
   filterZadatke,
-  brojIspravnih,
+  x,
 }) => {
   let completionColors = new Array(Zadaci.length).fill("rgb(153,163,200)");
   for (let i = 0; i < colors.length; i++) {

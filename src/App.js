@@ -5,7 +5,6 @@ import AdminDashboard from "./components/AdminPage/AdminDashboard";
 import ResultsTable from "./components/AdminPage/ResultsTable";
 import Testieanje from "./components/StudentPage/Testiranje";
 
-//api key: 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
 function App() {
   return (
     <Routes>

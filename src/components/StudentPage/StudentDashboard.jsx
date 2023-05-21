@@ -3,6 +3,7 @@ import ZadaciSidebar from "./ZadaciSidebar";
 import ZadatakContent from "./ZadatakContent";
 import { Zadaci } from "../database/PostavkaZadataka";
 import axios from "axios";
+import { Configuration, OpenAIApi } from "openai";
 
 const defaultCode = `#include<iostream>
 using namespace std;
@@ -14,6 +15,12 @@ int main()
 `;
 
 const StudentDashboard = () => {
+  //AI api configuration
+  const configuration = new Configuration({
+    apiKey: "",
+    //  apiKey: process.env.API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
   const [zadatakIndex, setZadatakIndex] = useState(0);
   //----------------------------------------------//
   const [code, setCode] = useState("");
@@ -46,6 +53,7 @@ const StudentDashboard = () => {
     else setPrikazContent(Zadaci[zadatakIndex].usloviZadatka || "");
   };
   //-----------------kompajliranje----------------//
+  //c++ kompajliranje
   const [isCompiling, setIsCompiling] = useState(false);
   const compileCode = async (input) => {
     try {
@@ -70,17 +78,57 @@ const StudentDashboard = () => {
       return "Compilation error";
     }
   };
+  //AI testing
+  const generateResponse = async (newQuestion) => {
+    let options = {
+      model: "text-davinci-003",
+      temperature: 0,
+      max_tokens: 100,
+      top_p: 1,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+      stop: ["/"],
+    };
+
+    let completeOptions = {
+      ...options,
+      prompt: newQuestion,
+    };
+
+    const response = await openai.createCompletion(completeOptions);
+    console.log(response.data.choices[0].text);
+    if (response.data.choices)
+      if (response.data.choices[0].text.toLocaleLowerCase().includes("da"))
+        return true;
+    return false;
+  };
+  //testiranje koda
   async function testCode() {
     setIsCompiling(true);
     setRezultati([]);
-    const testCases = Zadaci[zadatakIndex].skriveniTestPrimjeri;
     const results = rezultati;
-    for (let i = 0; i < testCases.length; i++) {
-      const testCase = testCases[i];
-      const result = await compileCode(testCase.ulaz);
-      results[i] = result;
+    if (Zadaci[zadatakIndex].podudarnost === "identicna") {
+      const testCases = Zadaci[zadatakIndex].skriveniTestPrimjeri;
+      for (let i = 0; i < testCases.length; i++) {
+        const testCase = testCases[i];
+        const result = await compileCode(testCase.ulaz);
+        results[i] = result;
+      }
+      setRezultati(results);
     }
-    setRezultati(results);
+    if (Zadaci[zadatakIndex].podudarnost === "ispravna") {
+      const tacanZadatak = await generateResponse(
+        `Kao da si sudija za programske zadatke i mozes odgovoriti samo sa "da" ili "ne", odgovori sa "ne" ako kod ne ispunjava uslove ili ako nije ispravan
+      zadatak:${Zadaci[zadatakIndex].tekstZadatka}\nuslovi:${Zadaci[zadatakIndex].usloviZadatka}\nkod:${code}`
+      );
+      if (tacanZadatak === true) {
+        results[0] = Zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz;
+        results[1] = Zadaci[zadatakIndex].skriveniTestPrimjeri[1].izlaz;
+        results[2] = Zadaci[zadatakIndex].skriveniTestPrimjeri[2].izlaz;
+      }
+      setRezultati(results);
+    }
+    //daljnje postavljanje tacnosti
     let tempSviRezultati = sviRezultati;
     tempSviRezultati[zadatakIndex] = results;
     //hard kodiranje boja i broja ispravnih
@@ -104,6 +152,7 @@ const StudentDashboard = () => {
     setColors(tempAllColors);
     //
     setSviRezultati(tempSviRezultati);
+    setRezultati(["", "", ""]);
     setIsCompiling(false);
   }
 
@@ -124,8 +173,8 @@ const StudentDashboard = () => {
     setRezultati(sviRezultati[index]);
   };
   return (
-    <div className="bg-[#353535] w-full h-full min-h-[800px] flex flex-wrap">
-      <h1 className="w-full text-center text-4xl pt-3 text-white hover:text-[#284B63]">
+    <div className="bg-white w-full h-full min-h-[800px] flex flex-wrap font-mono">
+      <h1 className="w-full text-center text-4xl font-sans font-bold pt-3 hover:text-[#284B63]">
         @Memset Ai Judge
       </h1>
       <ZadaciSidebar

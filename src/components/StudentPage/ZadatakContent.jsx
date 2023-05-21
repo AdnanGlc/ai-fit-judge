@@ -23,7 +23,7 @@ const ZadatakContent = ({
   return (
     //container
     <div
-      className="w-[75%] bg-[#D9D9D9] pt-4 m-5
+      className="w-[75%] bg-[#D9D9D9] pt-4 m-5 border-2 border-[#284B63]
      rounded-md flex flex-wrap h-[90vh] min-h-[750px] min-w-[900px] max-[1537]:min-h-[800px]"
     >
       <h3 className="w-full text-center text-xl h-12 mb-0">
@@ -111,13 +111,13 @@ const ZadatakContent = ({
           <textarea
             readOnly={true}
             value={Zadaci[zadatakIndex].testPrimjeri[tpIndex].ulaz}
-            className="w-[98%] m-1 bg-[#d9d9d9] rounded-md p-1"
+            className="w-[98%] m-1 bg-[#d9d9d9] rounded-md p-1 font-mono"
           ></textarea>
           <p className="pl-[1%] text-white font-bold">Izlaz:</p>
           <textarea
             readOnly={true}
             value={Zadaci[zadatakIndex].testPrimjeri[tpIndex].izlaz}
-            className="w-[98%] m-1 bg-[#d9d9d9] rounded-md p-1"
+            className="w-[98%] m-1 bg-[#d9d9d9] rounded-md p-1 font-mono"
           ></textarea>
         </div>
       </div>
