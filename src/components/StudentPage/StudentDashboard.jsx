@@ -174,9 +174,7 @@ const StudentDashboard = () => {
   };
   return (
     <div className="bg-white w-full h-full min-h-[800px] flex flex-wrap font-mono">
-      <h1 className="w-full text-center text-4xl font-sans font-bold pt-3 hover:text-[#284B63]">
-        @Memset Ai Judge
-      </h1>
+
       <ZadaciSidebar
         Zadaci={Zadaci}
         promijeniZadatak={promijeniZadatak}

@@ -1,12 +1,13 @@
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: #353535;
+  border-radius: 10px;
+
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #353535;
-  border: solid 1px white;
+  background-color: white;
   transition: border-right-color 0.2s ease-in-out;
 }
 

@@ -23,21 +23,21 @@ const ZadatakContent = ({
   return (
     //container
     <div
-      className="w-[75%] bg-[#D9D9D9] pt-4 m-5 border-2 border-[#284B63]
-     rounded-md flex flex-wrap h-[90vh] min-h-[750px] min-w-[900px] max-[1537]:min-h-[800px]"
+      className="container w-[70%]  m-5 ]
+     rounded-md flex flex-wrap h-[95vh]  min-w-[900px] max-[1537]:min-h-[800px]"
     >
-      <h3 className="w-full text-center text-xl h-12 mb-0">
+      {/* <h3 className="w-full text-center text-2xl h-12 m-0 p-0 uppercase text-[#3C6E71] tracking-wider">
         {Zadaci[zadatakIndex].imeZadatka}
-      </h3>
+      </h3> */}
       {/*---------------CODE EDITOR--------------- */}
-      <div className="bg-[#3C6E71] m-[1%] w-[30%] p-2 min-w-[350px] relative max-2xl:min-h-[700px] min-h-[628px]">
-        <p className="pl-2 text-white font-bold">Kod zadatka:</p>
+      <div className="bg-[#3C6E71] h-[100%] ml-3 w-[30%]  min-w-[350px] relative max-2xl:min-h-[600px] min-h-[628px]">
+        <p className="pl-2 text-white font-bold text-lg">Kod zadatka</p>
         <button
           className="absolute right-3 top-2 text-slate-700 bg-white w-6 h-6 text-center rounded-full
           hover:bg-[#353535] hover:text-yellow-400"
           onClick={() => setTheme(theme === "vs-dark" ? "light" : "vs-dark")}
         >
-          <BiSun className="ml-1" />
+          <BiSun className="m-1" />
         </button>
         <Editor
           language="cpp"
@@ -47,10 +47,10 @@ const ZadatakContent = ({
             saveCodeChange(value);
           }}
           value={kodovi[zadatakIndex]}
-          className="h-[500px] w-[325px] p-1 "
+          className="h-[80%] w-[325px] p-1 "
         />
         <button
-          className="w-[95%] left-[2.5%] bg-[#284B63] border-2 border-white text-white font-bold
+          className="w-[95%] left-[2.5%] bg-white border-2 border-white text-[#3C6E71] uppercase font-bold
            rounded-md hover:opacity-95 absolute bottom-[50px]"
           onClick={testCode}
         >
@@ -69,7 +69,7 @@ const ZadatakContent = ({
         ></Rezultati>
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
-      <div className="w-[calc(90%-300px)] bg-[#3C6E71] overflow-y-scroll m-3 h-[90%]">
+      <div className="zadatak-div w-[calc(90%-300px)] bg-[#3C6E71] overflow-y-auto ml-10 h-[100%]">
         <button
           className="m-[1%] bg-[#284B63] text-white border-2 border-white font-semibold p-2 rounded-md hover:opacity-80"
           onClick={() => promijeniPrikaz("tekstZadatka")}
@@ -91,7 +91,8 @@ const ZadatakContent = ({
         <textarea
           readOnly={true}
           value={prikazContent}
-          className="ml-[1%] w-[98%] h-[50%] p-2 "
+          id='tekst'
+          className=" ml-[1%] w-[98%] h-[50%] p-2 "
         ></textarea>
         {/* ..............Test primjeri.............. */}
         <div className="mb-0 pb-0">
