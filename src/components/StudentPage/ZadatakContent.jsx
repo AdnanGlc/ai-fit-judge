@@ -3,6 +3,7 @@ import { Editor } from "@monaco-editor/react";
 import { BiSun } from "react-icons/bi";
 import Rezultati from "./Rezultati";
 import "./scrollbarStyle.css";
+import CompilingLoader from "./isCompilingLoader/CompilingLoader";
 
 const ZadatakContent = ({
   Zadaci,
@@ -33,7 +34,7 @@ const ZadatakContent = ({
       <div className="bg-[#3C6E71] h-[100%] ml-3 w-[30%]  min-w-[350px] relative max-2xl:min-h-[600px] min-h-[628px]">
         <p className="pl-2 text-white font-bold text-lg">Kod zadatka</p>
         <button
-          className="absolute right-3 top-2 text-slate-700 bg-white w-6 h-6 text-center rounded-full
+          className="absolute right-3 top-1 text-slate-700 bg-white w-6 h-6 text-center rounded-full
           hover:bg-[#353535] hover:text-yellow-400"
           onClick={() => setTheme(theme === "vs-dark" ? "light" : "vs-dark")}
         >
@@ -51,16 +52,18 @@ const ZadatakContent = ({
         />
         <button
           className="w-[95%] left-[2.5%] bg-white border-2 border-white text-[#3C6E71] uppercase font-bold
-           rounded-md hover:opacity-95 absolute bottom-[50px]"
+           rounded-md absolute bottom-[50px] hover:opacity-70"
           onClick={testCode}
+          disabled={isCompiling}
         >
           Testiraj kod
         </button>
         {/* ............rezultati............ */}
         {isCompiling && (
-          <p className="bg-[#d9d9d9] w-[328px] h-[100px] absolute top-[428px] left-[11px] pt-8 text-center">
-            Kod se kompajlira...
-          </p>
+          <div className="bg-[#d9d9d9] w-[calc(100%-8px)] left-1 h-[190px] absolute top-[428px] pt-8 text-center opacity-70">
+            <p className="">Kod se kompajlira...</p>
+            <CompilingLoader />
+          </div>
         )}
         <Rezultati
           rezultati={rezultati}
@@ -69,7 +72,7 @@ const ZadatakContent = ({
         ></Rezultati>
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
-      <div className="zadatak-div w-[calc(90%-300px)] bg-[#3C6E71] overflow-y-auto ml-10 h-[100%]">
+      <div className="zadatak-div w-[calc(90%-300px)] bg-[#3C6E71] overflow-y-auto ml-10 h-[100%] border-2 border-[#3C6E71]">
         <button
           className="m-[1%] bg-[#284B63] text-white border-2 border-white font-semibold p-2 rounded-md hover:opacity-80"
           onClick={() => promijeniPrikaz("tekstZadatka")}
@@ -91,8 +94,8 @@ const ZadatakContent = ({
         <textarea
           readOnly={true}
           value={prikazContent}
-          id='tekst'
-          className=" ml-[1%] w-[98%] h-[50%] p-2 "
+          id="tekst"
+          className=" ml-[1%] w-[98%] h-[50%] p-2 border-2 border-white rounded-md"
         ></textarea>
         {/* ..............Test primjeri.............. */}
         <div className="mb-0 pb-0">
