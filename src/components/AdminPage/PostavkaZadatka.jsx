@@ -44,11 +44,11 @@ const PostavkaZadatka = () => {
 
         <div className="primjer ">
           <div className="">
-            <h3>Primjer inputa 1</h3>
+            <h3>Primjer inputa 2</h3>
             <textarea placeholder="input 1: npr. 'Unesite n:5'"></textarea>
           </div>
           <div className="">
-            <h3>Primjer outputa 1</h3>
+            <h3>Primjer outputa 2</h3>
             <textarea
               className="text-white"
               placeholder="output 1: npr. 'Broj je paran'"
@@ -58,11 +58,11 @@ const PostavkaZadatka = () => {
 
         <div className="primjer">
           <div className="">
-            <h3>Primjer inputa 1</h3>
+            <h3>Primjer inputa 3</h3>
             <textarea placeholder="input 1: npr. 'Unesite n:5'"></textarea>
           </div>
           <div className="">
-            <h3>Primjer outputa 1</h3>
+            <h3>Primjer outputa 3</h3>
             <textarea placeholder="output 1: npr. 'Broj je paran'"></textarea>
           </div>
         </div>

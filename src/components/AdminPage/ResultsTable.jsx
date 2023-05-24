@@ -145,10 +145,10 @@ const ResultsTable = () => {
         <p className="m-2 text-[#284B63]">Pretrazi:</p>
         <input
           className="ml-2 pl-1 border-2 border-[#353535] rounded-md"
-          placeholder="pretrazite po indeksu"
+          placeholder="pretrazite po indeksu . . . "
         ></input>
         <button
-          className="float-right bg-[#353535] border-2 border-white text-white p-1 mb-2 
+          className="float-right bg-[#353535] border-2 border-white text-white p-1 mb-2  rounded-md
         hover:opacity-90 hover:border-[#353535] hover:bg-[#d9d9d9] hover:text-[#353535]"
         >
           sortiraj po IB/Ukupno bodova
@@ -175,23 +175,23 @@ const ResultsTable = () => {
       <div className="w-[40%]">
         <div className="flex flex-wrap">
           <button
-            className="w-32 h-8 z-50 ml-[10%] bg-red-500 
+            className="w-32 h-8 z-50 ml-[10%] bg-red-500  rounded-md
           text-white hover:opacity-80 font-semibold border-2 border-white"
             onClick={() => setBodovi(index[0], index[1], 0)}
           >
             Ponisti zadatak
           </button>
           <input
-            placeholder="Dodaj bodove"
-            className="ml-2 pl-2 w-[62%] mb-2 h-8 border-2 border-[#353535] rounded-md"
+            placeholder="Dodaj bodove . . ."
+            className="ml-6 pl-2 w-[62%] mb-2 h-8 border-2 border-[#353535] rounded-md"
             type="number"
             min={-100}
             max={100}
             onChange={(e) => setBonousBodovi(e.target.value)}
           ></input>
           <button
-            className="w-32 h-8 z-50 ml-[calc(100%-160px)] bg-[#353535] 
-          font-semibold text-white hover:opacity-80 border-2 border-white"
+            className="w-32  z-50 ml-[calc(100%-145px)] bg-[#353535] border-2 border-white text-white p-1 mb-2  rounded-md
+            hover:opacity-90 hover:border-[#353535] hover:bg-[#d9d9d9] hover:text-[#353535]"
             onClick={() => setBodovi(index[0], index[1], bonusBodovi)}
           >
             Dodaj

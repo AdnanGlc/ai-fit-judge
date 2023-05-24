@@ -4,6 +4,8 @@ import { BiSun } from "react-icons/bi";
 import Rezultati from "./Rezultati";
 import "./scrollbarStyle.css";
 import CompilingLoader from "./isCompilingLoader/CompilingLoader";
+import { Link } from "react-router-dom";
+import { TbLogout } from "react-icons/tb";
 
 const ZadatakContent = ({
   Zadaci,
@@ -24,8 +26,15 @@ const ZadatakContent = ({
   return (
     //container
     <div className="container w-[70%]  m-5 rounded-md flex flex-wrap h-[95vh] min-w-[900px] max-[1537]:min-h-[800px]">
+      <div className="w-[98%] ml-[1%] text-center bg-[#353535] rounded-md mb-1 text-white relative">
+        <p>Memset - AI judge</p>
+        <button className="absolute right-[1px] top-[1px] text-sm rounded-md hover:text-[#3c6e71] hover:bg-white pl-1 pr-1 flex flex-wrap">
+          <Link to="/">Odjavite se </Link>
+          <TbLogout className="m-1" />
+        </button>
+      </div>
       {/*---------------CODE EDITOR--------------- */}
-      <div className="bg-[#353535] h-[100%] ml-3 w-[30%]  min-w-[350px] relative max-2xl:min-h-[600px] min-h-[628px] rounded-md">
+      <div className="bg-[#353535] h-[97%] ml-3 w-[30%]  min-w-[350px] relative max-2xl:min-h-[600px] min-h-[628px] rounded-md">
         <p className="pl-2 text-white font-bold text-lg">Kod zadatka</p>
         <button
           className="absolute right-3 top-1 text-slate-700 bg-white w-6 h-6 text-center rounded-full
@@ -45,7 +54,7 @@ const ZadatakContent = ({
           className="h-[80%] w-[325px] p-1 "
         />
         <button
-          className="w-[95%] left-[2.5%] bg-white border-2 border-white text-[#353535] uppercase font-bold
+          className="w-[95%] left-[2.5%] bg-white border-2 border-white text-[#3c6e71] uppercase font-bold
            rounded-md absolute bottom-[65px] hover:opacity-70"
           onClick={testCode}
           disabled={isCompiling}
@@ -66,7 +75,7 @@ const ZadatakContent = ({
         ></Rezultati>
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
-      <div className="zadatak-div w-[calc(90%-300px)] bg-[#353535] overflow-y-auto ml-10 h-[100%] border-2 border-[#353535] rounded-md">
+      <div className="zadatak-div h-[97%] w-[calc(90%-300px)] bg-[#353535] overflow-y-auto ml-10 border-2 border-[#353535] rounded-md">
         <button
           className="m-[1%] text-white border-2 border-white font-semibold p-2 rounded-md hover:opacity-80"
           onClick={() => promijeniPrikaz("tekstZadatka")}

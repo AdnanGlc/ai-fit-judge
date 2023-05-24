@@ -36,14 +36,10 @@ const StudentLoginPage = () => {
             className="block w-full bg-blue-500 text-white border border-blue-500 rounded-lg mt-6 py-2 transition-colors duration-300 ease-in-out hover:bg-lightBlue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
             type="submit"
           >
-            Prijavite se
+            <Link to="/student-dashboard">Prijavite se</Link>
           </button>
         </form>
-        <div className="mt-6 text-right">
-          <Link to="/student-dashboard" className="underline text-blue-500">
-            Student dashboard
-          </Link>
-        </div>
+        <div className="mt-6 text-right"></div>
       </div>
     </div>
   );
