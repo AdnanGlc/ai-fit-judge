@@ -31,9 +31,9 @@ const StudentDashboard = () => {
   const [brojIspravnih, setBrojIspravnih] = useState(0);
   const [colors, setColors] = useState(
     new Array(Zadaci.length).fill([
-      "rgb(107,114,128)",
-      "rgb(107,114,128)",
-      "rgb(107,114,128)",
+      "rgb(255,255,255)",
+      "rgb(255,255,255)",
+      "rgb(255,255,255)",
     ])
   );
   const [kodovi, setKodovi] = useState(
@@ -173,7 +173,7 @@ const StudentDashboard = () => {
     setRezultati(sviRezultati[index]);
   };
   return (
-    <div className="bg-white w-full h-full min-h-[800px] flex flex-wrap font-mono">
+    <div className="bg-white flex font-mono">
 
       <ZadaciSidebar
         Zadaci={Zadaci}

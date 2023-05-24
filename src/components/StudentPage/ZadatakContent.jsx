@@ -23,14 +23,14 @@ const ZadatakContent = ({
   return (
     //container
     <div
-      className="container w-[70%]  m-5 ]
-     rounded-md flex flex-wrap h-[95vh]  min-w-[900px] max-[1537]:min-h-[800px]"
+      className="container w-[82%] mt-5
+     rounded-md flex h-[95vh] "
     >
       {/* <h3 className="w-full text-center text-2xl h-12 m-0 p-0 uppercase text-[#3C6E71] tracking-wider">
         {Zadaci[zadatakIndex].imeZadatka}
       </h3> */}
       {/*---------------CODE EDITOR--------------- */}
-      <div className="bg-[#3C6E71] h-[100%] ml-3 w-[30%]  min-w-[350px] relative max-2xl:min-h-[600px] min-h-[628px]">
+      <div className="bg-[#353535] h-[100%] w-[32%]  rounded-md relative ">
         <p className="pl-2 text-white font-bold text-lg">Kod zadatka</p>
         <button
           className="absolute right-3 top-2 text-slate-700 bg-white w-6 h-6 text-center rounded-full
@@ -47,10 +47,10 @@ const ZadatakContent = ({
             saveCodeChange(value);
           }}
           value={kodovi[zadatakIndex]}
-          className="h-[80%] w-[325px] p-1 "
+          className="h-[80%] w-[325px] p-2 "
         />
         <button
-          className="w-[95%] left-[2.5%] bg-white border-2 border-white text-[#3C6E71] uppercase font-bold
+          className="w-[95%] left-[2.5%] bg-white border-2 border-white text-[#353535] uppercase font-bold
            rounded-md hover:opacity-95 absolute bottom-[50px]"
           onClick={testCode}
         >
@@ -58,7 +58,7 @@ const ZadatakContent = ({
         </button>
         {/* ............rezultati............ */}
         {isCompiling && (
-          <p className="bg-[#d9d9d9] w-[328px] h-[100px] absolute top-[428px] left-[11px] pt-8 text-center">
+          <p className="text-white uppercase w-[50%] h-[50px] bg-[#353535] left-[20%] absolute top-[428px] text-center">
             Kod se kompajlira...
           </p>
         )}
@@ -69,25 +69,28 @@ const ZadatakContent = ({
         ></Rezultati>
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
-      <div className="zadatak-div w-[calc(90%-300px)] bg-[#3C6E71] overflow-y-auto ml-10 h-[100%]">
+      <div className="zadatak-div w-[65%] bg-white overflow-y-auto ml-3 h-[100%]">
+        <div className="header">
         <button
-          className="m-[1%] bg-[#284B63] text-white border-2 border-white font-semibold p-2 rounded-md hover:opacity-80"
+          className="m-[1%] bg-[#284B63] uppercase text-white border-2 border-white font-semibold p-1 rounded-md hover:opacity-80"
           onClick={() => promijeniPrikaz("tekstZadatka")}
         >
           Tekst zadatka
         </button>
         <button
-          className="m-[1%] bg-[#284B63] text-white border-2 border-white p-2 font-semibold rounded-md hover:opacity-80 "
+          className="m-[1%] bg-[#284B63] uppercase text-white border-2 border-white p-1 font-semibold rounded-md hover:opacity-80 "
           onClick={() => promijeniPrikaz("usloviZadatka")}
         >
           Uslovi zadatka
         </button>
         <button
-          className="m-[1%] bg-[#284B63] text-white border-2 border-white font-semibold p-2 rounded-md hover:opacity-80"
-          onClick={() => promijeniPrikaz("slika")}
+          className="m-[1%] bg-[#284B63] uppercase text-white border-2 border-white font-semibold p-1 rounded-md hover:opacity-80"
+          onClick={(e) => promijeniPrikaz("slika")}
+          
         >
           Slike
         </button>
+        </div>
         <textarea
           readOnly={true}
           value={prikazContent}
@@ -96,18 +99,20 @@ const ZadatakContent = ({
         ></textarea>
         {/* ..............Test primjeri.............. */}
         <div className="mb-0 pb-0">
+          <div className="flex justify-evenly ">
           <button
-            className="ml-[19.5%] bg-[#284B63] text-white border-2 font-bold border-white p-1 rounded-md w-[30%] hover:opacity-90 hover:text-bold"
+            className=" border-[#353535] text-white border-2 font-bold uppercase border-white p-1 rounded-md w-[30%] hover:opacity-90 hover:text-bold"
             onClick={() => setTpIndex((3 + tpIndex - 1) % 3)}
           >
             Prethodni test primjer
           </button>
           <button
-            className="ml-[1%] bg-[#284B63] text-white border-2 font-bold border-white p-1 rounded-md w-[30%] hover:opacity-90"
+            className="border-2 font-bold border-[#353535] p-1 rounded-md uppercase w-[30%] hover:opacity-90"
             onClick={() => setTpIndex((tpIndex + 1) % 3)}
           >
             Slijedeci test primjer
           </button>
+          </div>
           <p className="pl-[1%] text-white font-bold">Ulazni podaci:</p>
           <textarea
             readOnly={true}

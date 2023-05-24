@@ -11,7 +11,7 @@ const ZadaciSidebar = ({
 }) => {
   let completionColors = new Array(Zadaci.length).fill("rgb(255,255,255)");
   for (let i = 0; i < colors.length; i++) {
-    if (colors[i][0] === "rgb(107,114,128)") continue;
+    if (colors[i][0] === "rgb(255,255,255)") continue;
     if (
       colors[i][0] === "#2bc016" && //tacna sva tri test primjera
       colors[i][0] === colors[i][1] &&
@@ -47,7 +47,7 @@ const ZadaciSidebar = ({
     );
   }
   return (
-    <div className="student-zadaci bg-[#3C6E71] w-[15%] h-[95vh] mt-5 ml-5 pl-[1.5%] pt-4 rounded-md min-h-[650px]">
+    <div className="student-zadaci bg-[#353535] w-[15%] h-[95vh] mt-5 ml-2 pl-[1.5%] pt-4 rounded-md ">
       <p className="text-white font-bold text-2xl uppercase">Zadaci</p>
  
       

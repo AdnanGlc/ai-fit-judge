@@ -5,7 +5,7 @@ border:none;
 }
 .student-zadaci ul li{
     background-color: white;
-    color:#3C6E71;
+    color:#353535;
     border:none;
     width:100%;
 padding:5px;   
@@ -14,24 +14,44 @@ padding:5px;
 
 .zadatak-div button{
     background-color: white;
-    border:none;
-    color:#3C6E71;
+    color:#353535;
     font-weight: bold;
     margin: 10px 5px;
+    
 }
 .container{
-    width:75%;
-    padding:5px;
     margin-left:auto;
     margin-right: auto;
+    border-radius: 10px;
+    display: flex;;
+    justify-content: space-evenly;
+    
+}
+.zadatak-div{
+    border-radius: 10px;
 }
 .zadatak-div textarea{
-    background-color: white;
-    color: #3C6E71;
+    background-color: #353535;
+    color: white;
     outline: none;
+    border-radius: 10px;
 }
 #tekst{
     color:white;
-    background-color: #3C6E71;
+    background-color: #353535;
     font-size: 18px;
+}
+.testovi div{
+background-color: white;
+border:1px solid #353535;
+}
+.header button{
+    border-radius: 0px;
+    transition:.2s;
+    font-size: 18px;
+    
+}
+.header button:focus{
+    border-bottom: 2px solid #353535;
+    
 }

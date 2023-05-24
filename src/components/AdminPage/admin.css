@@ -15,8 +15,7 @@
 }
 .sidebar ul {
   height: 85%;
-  overflow-y: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-bottom: 10px;
 }
 .sidebar ul::-webkit-scrollbar {
