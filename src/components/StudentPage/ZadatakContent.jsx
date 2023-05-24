@@ -60,7 +60,7 @@ const ZadatakContent = ({
         </button>
         {/* ............rezultati............ */}
         {isCompiling && (
-          <p className="bg-[#d9d9d9] w-[328px] h-[100px] absolute top-[428px] left-[11px] pt-8 text-center">
+          <p className="text-white uppercase w-[50%] h-[50px] bg-[#353535] left-[20%] absolute top-[428px] text-center">
             Kod se kompajlira...
           </p>
         )}
@@ -71,7 +71,8 @@ const ZadatakContent = ({
         ></Rezultati>
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
-      <div className="zadatak-div w-[calc(90%-300px)] bg-[#3C6E71] overflow-y-auto ml-10 h-[100%]">
+      <div className="zadatak-div w-[65%] bg-white overflow-y-auto ml-3 h-[100%]">
+        <div className="header">
         <button
           className="m-[1%] bg-[#284B63] uppercase text-white border-2 border-white font-semibold p-1 rounded-md hover:opacity-80"
           onClick={() => promijeniPrikaz("tekstZadatka")}
