@@ -31,6 +31,10 @@ const ZadaciSidebar = ({
       <li
         className="flex rounded-md font-bold hover:opacity-70 relative border-[3px]"
         key={i}
+        style={{
+          backgroundColor: i === zadatakIndex ? "#a5a5a5" : "white",
+          border: i === zadatakIndex ? "solid white 1px" : "solid #353535 1px",
+        }}
       >
         <button
           className="w-full relative text-left"
@@ -38,7 +42,7 @@ const ZadaciSidebar = ({
         >
           {Zadaci[i].imeZadatka}
           <div
-            className=" flag w-3 h-3 mt-[6px] rounded-full absolute right-0 top-0 border-[#3C6E71] border-2"
+            className=" flag w-3 h-3 mt-[6px] rounded-full absolute right-0 top-0 border-[1px] border-black"
             style={{ backgroundColor: completionColors[i] }}
           ></div>
         </button>
@@ -46,7 +50,7 @@ const ZadaciSidebar = ({
     );
   }
   return (
-    <div className="student-zadaci bg-[#3C6E71] w-[15%] h-[95vh] mt-5 ml-5 pl-[1.5%] pt-4 rounded-md min-h-[650px]">
+    <div className="student-zadaci bg-[#353535] w-[15%] h-[95vh] mt-5 ml-5 pl-[1.5%] pt-4 rounded-md min-h-[650px]">
       <p className="text-white font-bold text-2xl uppercase">Zadaci</p>
 
       <ul className="border-slate-500 border-2 w-[90%] h-[85%] overflow-y-auto">

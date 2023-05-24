@@ -1,37 +1,35 @@
-
-.student-zadaci ul{
-border:none;
-
+.student-zadaci ul {
+  border: none;
 }
-.student-zadaci ul li{
-    background-color: white;
-    color:#3C6E71;
-    border:none;
-    width:100%;
-padding:5px;   
- margin-top: 20px;
+.student-zadaci ul li {
+  background-color: white;
+  color: #3c6e71;
+  border: none;
+  width: 100%;
+  padding: 5px;
+  margin-top: 20px;
 }
 
-.zadatak-div button{
-    background-color: white;
-    border:none;
-    color:#3C6E71;
-    font-weight: bold;
-    margin: 10px 5px;
+.zadatak-div button {
+  background-color: white;
+  border: none;
+  color: #3c6e71;
+  font-weight: bold;
+  margin: 10px 5px;
 }
-.container{
-    width:75%;
-    padding:5px;
-    margin-left:auto;
-    margin-right: auto;
+.container {
+  width: 75%;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.zadatak-div textarea{
-    background-color: white;
-    color: #3C6E71;
-    outline: none;
+.zadatak-div textarea {
+  background-color: white;
+  color: #3c6e71;
+  outline: none;
 }
-#tekst{
-    color:white;
-    background-color: #3C6E71;
-    font-size: 18px;
+#tekst {
+  color: #3c6e71;
+  background-color: white;
+  font-size: 18px;
 }

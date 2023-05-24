@@ -18,7 +18,7 @@ int main()
 const StudentDashboard = () => {
   //AI api configuration
   const configuration = new Configuration({
-    apiKey: `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`,
+    apiKey: `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`,
   });
   const openai = new OpenAIApi(configuration);
   const [zadatakIndex, setZadatakIndex] = useState(0);
