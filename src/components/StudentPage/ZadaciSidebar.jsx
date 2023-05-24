@@ -1,13 +1,12 @@
 import React from "react";
-import './student.css'
+import "./student.css";
 const ZadaciSidebar = ({
   Zadaci,
   promijeniZadatak,
   zadatakIndex,
   colors,
   filterZadatke,
-  x,
-  brojIspravnih 
+  brojIspravnih,
 }) => {
   let completionColors = new Array(Zadaci.length).fill("rgb(255,255,255)");
   for (let i = 0; i < colors.length; i++) {
@@ -35,11 +34,11 @@ const ZadaciSidebar = ({
       >
         <button
           className="w-full relative text-left"
-          onClick={(e) => promijeniZadatak(i)}
+          onClick={() => promijeniZadatak(i)}
         >
           {Zadaci[i].imeZadatka}
           <div
-            className=" flag w-3 h-3 mt-[6px] rounded-full absolute right-[2px] top-0 "
+            className=" flag w-3 h-3 mt-[6px] rounded-full absolute right-0 top-0 border-[#3C6E71] border-2"
             style={{ backgroundColor: completionColors[i] }}
           ></div>
         </button>
@@ -49,8 +48,7 @@ const ZadaciSidebar = ({
   return (
     <div className="student-zadaci bg-[#353535] w-[15%] h-[95vh] mt-5 ml-2 pl-[1.5%] pt-4 rounded-md ">
       <p className="text-white font-bold text-2xl uppercase">Zadaci</p>
- 
-      
+
       <ul className="border-slate-500 border-2 w-[90%] h-[85%] overflow-y-auto">
         {listaZadataka}
       </ul>

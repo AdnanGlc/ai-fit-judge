@@ -5,7 +5,8 @@ import { Zadaci } from "../database/PostavkaZadataka";
 import axios from "axios";
 import { Configuration, OpenAIApi } from "openai";
 
-const defaultCode = `#include<iostream>
+const defaultCode = `
+#include<iostream>
 using namespace std;
 int main()
 {
@@ -17,8 +18,7 @@ int main()
 const StudentDashboard = () => {
   //AI api configuration
   const configuration = new Configuration({
-    apiKey: "",
-    //  apiKey: process.env.API_KEY,
+    apiKey: `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`,
   });
   const openai = new OpenAIApi(configuration);
   const [zadatakIndex, setZadatakIndex] = useState(0);
@@ -118,7 +118,7 @@ const StudentDashboard = () => {
     }
     if (Zadaci[zadatakIndex].podudarnost === "ispravna") {
       const tacanZadatak = await generateResponse(
-        `Kao da si sudija za programske zadatke i mozes odgovoriti samo sa "da" ili "ne", odgovori sa "ne" ako kod ne ispunjava uslove ili ako nije ispravan
+        `odgovori samo sa Da ili Ne, da li kod ispunjava uslove zadatka i da li je ispravan,
       zadatak:${Zadaci[zadatakIndex].tekstZadatka}\nuslovi:${Zadaci[zadatakIndex].usloviZadatka}\nkod:${code}`
       );
       if (tacanZadatak === true) {

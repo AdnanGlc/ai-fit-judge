@@ -49,7 +49,7 @@ export const Zadaci = [
     tekstZadatka:
       "Napisi program koji trazi od korisnika unos broja n, zatim ispisuje n-ti fibbunacijev broj",
     usloviZadatka:
-      "Mora se koristiti rkurzija\nUkoliko se desio owerflow nad intom vratiti '0'",
+      "Mora se koristiti rekurzija\nUkoliko se desio owerflow nad intom vratiti '0'",
     slika: "",
     podudarnost: "ispravna",
     vidljivost: "vidljiv",

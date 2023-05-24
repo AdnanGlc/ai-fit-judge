@@ -1,32 +1,43 @@
 import { Editor } from "@monaco-editor/react";
-import React from "react";
+import React, { useState } from "react";
 import { Zadaci } from "../database/PostavkaZadataka";
+import { StudentData } from "../database/StudentData";
 
-const studenti = [];
-for (let i = 0; i < 100; i++) {
-  studenti.push(
-    <tr key={i}>
-      <td className="pl-2 border-t-2 w-[20%]" key={-1000 + i}>
-        IB: 2200{i < 10 ? "0" : ""}
-        {i}
-      </td>
-      {Zadaci.map((zadatak, j) => {
-        return (
-          <td className="text-center border-2" key={123123 + j}>
-            <button className="w-full hover:bg-[#3C6E71] hover:text-white">
-              {Math.floor(Math.random() * 100)}
-            </button>
-          </td>
-        );
-      })}
-    </tr>
-  );
-}
-
-const ResultsTable = ({ data }) => {
+const ResultsTable = () => {
+  const [studentCode, setStudentCode] = useState();
+  const loadCode = (i, j) => {
+    if (i != 0) return;
+    setStudentCode(StudentData[0].kodovi[j].kod);
+  };
+  const studenti = [];
+  for (let i = 0; i < 100; i++) {
+    studenti.push(
+      <tr key={i}>
+        <td
+          className="pl-2 border-t-2 w-[20%] min-w-[100px] right-0 sticky"
+          key={-1000 + i}
+        >
+          IB: 2200{i < 10 ? "0" : ""}
+          {i}
+        </td>
+        {Zadaci.map((zadatak, j) => {
+          return (
+            <td className="text-center border-2 min-w-[150px]" key={1231 + j}>
+              <button
+                className="w-full h-full hover:bg-[#3C6E71] hover:text-white"
+                onClick={() => loadCode(i, j)}
+              >
+                {i == 0 ? StudentData[0].kodovi[j].bodovi : 0}
+              </button>
+            </td>
+          );
+        })}
+      </tr>
+    );
+  }
   return (
-    <div className="w-full h-[100vh] bg-[#353535] flex flex-wrap space-x-8">
-      <h1 className="w-full text-center mb-5 p-5 text-2xl font-bold bg-[#284B63] text-white">
+    <div className="w-full h-screen bg-[#353535] flex flex-wrap space-x-8">
+      <h1 className="w-full max-h-[100px] text-center mb-5 p-5 text-2xl font-bold bg-[#284B63] text-white">
         Tabela rezultata
       </h1>
       <div className="w-[50%]">
@@ -53,6 +64,7 @@ const ResultsTable = ({ data }) => {
           </table>
         </div>
       </div>
+      {/* editor */}
       <div className="w-[40%]">
         <div className="flex flex-wrap">
           <button
@@ -83,9 +95,9 @@ const ResultsTable = ({ data }) => {
           //ponistavanja zadatka ukoliko uslovi nisu ispunjeni
           //kod studenta se ucitava prilikom klika 
           //na bodove zadatka"
-          className="h-[600px] w-[90%] p-1 ml-[10%] m-5 bg-[#353535]"
+          className="h-[600px] w-[400px] p-1 ml-[10%] m-5 bg-[#353535]"
+          value={studentCode}
         ></Editor>
-        <div></div>
       </div>
     </div>
   );
