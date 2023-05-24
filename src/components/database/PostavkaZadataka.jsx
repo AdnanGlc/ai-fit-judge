@@ -22,6 +22,27 @@ export const Zadaci = [
     ],
   },
   {
+    zadatakID: "6",
+    imeZadatka: "Hello world",
+    tekstZadatka: "Napisi program koji ispisuje poruku Hello World!",
+    usloviZadatka: "U kodu mora biti komentar FIT-Mostar",
+    slika: "",
+    podudarnost: "ispravna",
+    vidljivost: "vidljiv",
+    vremeskoOgranicenje: "2000", //ms
+    istekZadatka: "10-05-2023",
+    testPrimjeri: [
+      { ulaz: "", izlaz: "Hello World!" },
+      { ulaz: "", izlaz: "Hello World!" },
+      { ulaz: "", izlaz: "Hello World!" },
+    ],
+    skriveniTestPrimjeri: [
+      { ulaz: "", izlaz: "Hello World!" },
+      { ulaz: "", izlaz: "Hello World!" },
+      { ulaz: "", izlaz: "Hello World!" },
+    ],
+  },
+  {
     zadatakID: "2",
     imeZadatka: "Najveci broj",
     tekstZadatka:
@@ -68,48 +89,40 @@ export const Zadaci = [
   },
   {
     zadatakID: "4",
-    imeZadatka: "Palindromni zbir",
-    tekstZadatka:
-      "Omogučiti unos dva broja X i Y iz intervala od 10 do 5000. Kreirati program koji će pronaći i ispisati sve brojeve od X do Y (uključujući granične vrijednosti) za koje važi da je obrnuti broj djeljiv sa njegovom sumom cifara. Za olakšanje rješenja zadataka napraviri funkcije za obrtanje poretka cifara i za sumu cifara. Npr. Za broj 144 vrijedi da mu je suma cifara 9 i da je broj koji se dobije nakon što se njegove cifre obrnu 441, djeljiv sa 9.",
-    usloviZadatka:
-      "Zabranjeno koristiti pomocne biblioteke\nZabranjeno obrnuti broj uz pomoc stringova",
+    imeZadatka: "Bacanje kockica",
+    tekstZadatka: `Napisati program koji simulira bacanje 3 kockice. Simulirati konstantno bacanje sve tri kockice dok se u dva uzastopna bacanja ne desi da se dobiju isti brojevi na sve tri kockice (npr. u šestom bacanju se dobiju brojevi 2, 2, 2, a u sedmom 4, 4, 4 na sve tri kockice).\nIspisati koliko je ukupno bilo bacanja dok se nije ispunio navedeni uslov.`,
+    usloviZadatka: "postaviti srand na NULL",
     slika: "",
-    podudarnost: "identicna",
+    podudarnost: "ispravna",
     vidljivost: "vidljiv",
     vremeskoOgranicenje: "2000", //ms
     istekZadatka: "10-05-2023",
     testPrimjeri: [
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
     ],
     skriveniTestPrimjeri: [
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
     ],
   },
@@ -226,5 +239,26 @@ int main()
     return 0;
 }
 
+bacanje kockica:
+
+#include <iostream>
+#include<time.h>
+using namespace std;
+int main()
+{
+    srand(time(NULL));
+    int k1,k2,k3,iste=0,c=0;
+    do{
+        c++;
+        k1=rand()%6+1;
+        k2=rand()%6+1;
+        k3=rand()%6+1;
+        if(k1==k2 && k1==k3)iste++;
+        else iste=0;
+        if(iste==2)break;
+    }while(true);
+    cout<<c<<endl;
+    return 0;
+}
 
 */

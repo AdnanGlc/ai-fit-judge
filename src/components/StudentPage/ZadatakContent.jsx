@@ -123,7 +123,11 @@ const ZadatakContent = ({
           <p className="pl-[1%] text-white font-bold">Izlaz:</p>
           <textarea
             readOnly={true}
-            value={Zadaci[zadatakIndex].testPrimjeri[tpIndex].izlaz}
+            value={
+              Zadaci[zadatakIndex].testPrimjeri[tpIndex].izlaz === ""
+                ? parseInt(Math.random() * 10 + 2)
+                : Zadaci[zadatakIndex].testPrimjeri[tpIndex].izlaz
+            }
             className="w-[98%] m-1 bg-[#d9d9d9] rounded-md p-1 font-mono"
           ></textarea>
         </div>

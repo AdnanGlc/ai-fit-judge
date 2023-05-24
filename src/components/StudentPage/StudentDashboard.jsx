@@ -83,7 +83,7 @@ const StudentDashboard = () => {
     let options = {
       model: "text-davinci-003",
       temperature: 0,
-      max_tokens: 100,
+      max_tokens: 1000,
       top_p: 1,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
@@ -98,7 +98,12 @@ const StudentDashboard = () => {
     const response = await openai.createCompletion(completeOptions);
     console.log(response.data.choices[0].text);
     if (response.data.choices)
-      if (response.data.choices[0].text.toLocaleLowerCase().includes("da"))
+      if (
+        response.data.choices[0].text
+          .toLocaleLowerCase()
+          .substring(0, 4)
+          .includes("da")
+      )
         return true;
     return false;
   };
@@ -118,7 +123,9 @@ const StudentDashboard = () => {
     }
     if (Zadaci[zadatakIndex].podudarnost === "ispravna") {
       const tacanZadatak = await generateResponse(
-        `odgovori samo sa Da ili Ne, da li kod ispunjava uslove zadatka i da li je ispravan,
+        //Odgovori samo sa Da ili Ne
+        `Odgovori sa da ili ne i obrazlozi u maksimalno 10 rijeci c++ kod,da li kod ispunjava uslove zadatka i da li je kod ispravan, i da li je sintaksa ispravna,
+        ako ima bilo koja greska oznaci ga kao netacnog,\n
       zadatak:${Zadaci[zadatakIndex].tekstZadatka}\nuslovi:${Zadaci[zadatakIndex].usloviZadatka}\nkod:${code}`
       );
       if (tacanZadatak === true) {

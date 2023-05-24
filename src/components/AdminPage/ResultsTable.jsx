@@ -24,6 +24,13 @@ const ResultsTable = () => {
           tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
         },
         {
+          kodID: "6",
+          bodovi: "100",
+          kod: `#include<iostream>using namespace std;int main(){int a,b,c;cin>>a>>b>>c; cout<<max(a,max(b,c)); return 0;}`,
+          rezultati: ["", "", ""],
+          tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
+        },
+        {
           kodID: "1",
           bodovi: 0,
           kod: `
@@ -35,6 +42,13 @@ const ResultsTable = () => {
     cout<<max(a,max(b,c));
     return 0;
   }`,
+          rezultati: ["", "", ""],
+          tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
+        },
+        {
+          kodID: "1",
+          bodovi: 100,
+          kod: `#include<iostream>using namespace std;int main(){int a,b,c;cin>>a>>b>>c; cout<<max(a,max(b,c)); return 0;}`,
           rezultati: ["", "", ""],
           tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
         },
@@ -105,7 +119,7 @@ const ResultsTable = () => {
   const [index, setIndex] = useState([0, 0]);
   const [studentCode, setStudentCode] = useState();
   const loadCode = (i, j) => {
-    if (i != 0) return;
+    if (i !== 0) return;
     let tempIndex = [i, j];
     setIndex(tempIndex);
     setStudentCode(StudentData[0].kodovi[j].kod);
@@ -128,7 +142,7 @@ const ResultsTable = () => {
                 className="w-full h-full hover:bg-[#404040] hover:text-white"
                 onClick={() => loadCode(i, j)}
               >
-                {i == 0 ? StudentData[0].kodovi[j].bodovi : 0}
+                {i === 0 ? StudentData[0].kodovi[j].bodovi : 0}
               </button>
             </td>
           );
