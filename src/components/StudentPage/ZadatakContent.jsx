@@ -72,7 +72,7 @@ const ZadatakContent = ({
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
       <div className="zadatak-div w-[65%] bg-white overflow-y-auto ml-3 h-[100%]">
-        <div className="header">
+        
         <button
           className="m-[1%] bg-[#284B63] uppercase text-white border-2 border-white font-semibold p-1 rounded-md hover:opacity-80"
           onClick={() => promijeniPrikaz("tekstZadatka")}
@@ -92,7 +92,7 @@ const ZadatakContent = ({
         >
           Slike
         </button>
-        </div>
+       
         <textarea
           readOnly={true}
           value={prikazContent}
