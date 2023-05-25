@@ -26,7 +26,14 @@ const ResultsTable = () => {
         {
           kodID: "6",
           bodovi: "100",
-          kod: `#include<iostream>using namespace std;int main(){int a,b,c;cin>>a>>b>>c; cout<<max(a,max(b,c)); return 0;}`,
+          kod: `#include<iostream>
+using namespace std;
+int main()
+{
+  int a,b,c;cin>>a>>b>>c;
+  cout<<max(a,max(b,c));
+  return 0;
+}`,
           rezultati: ["", "", ""],
           tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
         },
@@ -48,14 +55,24 @@ const ResultsTable = () => {
         {
           kodID: "1",
           bodovi: 100,
-          kod: `#include<iostream>using namespace std;int main(){int a,b,c;cin>>a>>b>>c; cout<<max(a,max(b,c)); return 0;}`,
-          rezultati: ["", "", ""],
-          tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
-        },
-        {
-          kodID: "1",
-          bodovi: 100,
-          kod: `#include<iostream>using namespace std;int main(){int a,b,c;cin>>a>>b>>c; cout<<max(a,max(b,c)); return 0;}`,
+          kod: `
+#include<iostream>
+using namespace std;
+int fibo(int a)
+{
+  if(a==1 || a==0)return 1;
+  else{
+  int temp= fibo(a-1) + fibo(a-2);
+  if(temp<0)return 0;
+  else return temp;
+  }
+}
+int main()
+{
+  int a;cin>>a;
+  cout<<fibo(a);
+  return 0;
+}`,
           rezultati: ["", "", ""],
           tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
         },

@@ -98,14 +98,9 @@ const StudentDashboard = () => {
     const response = await openai.createCompletion(completeOptions);
     console.log(response.data.choices[0].text);
     if (response.data.choices)
-      if (
-        response.data.choices[0].text
-          .toLocaleLowerCase()
-          .substring(0, 4)
-          .includes("da")
-      )
-        return true;
-    return false;
+      if (response.data.choices[0].text.toLocaleLowerCase().includes("ne"))
+        return false;
+    return true;
   };
   //testiranje koda
   async function testCode() {
@@ -123,10 +118,10 @@ const StudentDashboard = () => {
     }
     if (Zadaci[zadatakIndex].podudarnost === "ispravna") {
       const tacanZadatak = await generateResponse(
-        //Odgovori samo sa Da ili Ne
         `Odgovori sa da ili ne i obrazlozi u maksimalno 10 rijeci c++ kod,da li kod ispunjava uslove zadatka i da li je kod ispravan, i da li je sintaksa ispravna,
-        ako ima bilo koja greska oznaci ga kao netacnog,\n
-      zadatak:${Zadaci[zadatakIndex].tekstZadatka}\nuslovi:${Zadaci[zadatakIndex].usloviZadatka}\nkod:${code}`
+ako ima bilo koja greska oznaci ga kao netacnog,\n
+zadatak:${Zadaci[zadatakIndex].tekstZadatka}\nkod:${code}\nuslovi:${Zadaci[zadatakIndex].usloviZadatka}
+\nUkoliko bilo koji uslov nije ispunjen odgovri sa "Ne" i obrazlozi u maksimalno 10 rijeci`
       );
       if (tacanZadatak === true) {
         results[0] = Zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz;

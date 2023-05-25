@@ -89,9 +89,10 @@ export const Zadaci = [
   },
   {
     zadatakID: "4",
-    imeZadatka: "Bacanje kockica",
-    tekstZadatka: `Napisati program koji simulira bacanje 3 kockice. Simulirati konstantno bacanje sve tri kockice dok se u dva uzastopna bacanja ne desi da se dobiju isti brojevi na sve tri kockice (npr. u šestom bacanju se dobiju brojevi 2, 2, 2, a u sedmom 4, 4, 4 na sve tri kockice).\nIspisati koliko je ukupno bilo bacanja dok se nije ispunio navedeni uslov.`,
-    usloviZadatka: "postaviti srand na NULL",
+    imeZadatka: "Procenat prostih",
+    tekstZadatka: `Traziti od korisnika da u niz spremi 100 nasumicnih brojeva od 1-100000 koji imaju nepran broj cifara, te ispisati koliko je procenat generisanja prostih brojeva`,
+    usloviZadatka:
+      "Mora postojati logika koja omogućuje ponavljanje generisanja brojeva sve dok nemaju neparan broj cifara",
     slika: "",
     podudarnost: "ispravna",
     vidljivost: "vidljiv",
@@ -113,16 +114,16 @@ export const Zadaci = [
     ],
     skriveniTestPrimjeri: [
       {
-        ulaz: "",
-        izlaz: "",
+        ulaz: ".",
+        izlaz: ".",
       },
       {
-        ulaz: "",
-        izlaz: "",
+        ulaz: ".",
+        izlaz: ".",
       },
       {
-        ulaz: "",
-        izlaz: "",
+        ulaz: ".",
+        izlaz: ".",
       },
     ],
   },
@@ -181,7 +182,7 @@ export const Zadaci = [
 //kodovi
 /*
 
-zadatak 4:
+zadatak 4: fibbonaci
 #include<iostream>
 using namespace std;
 int fibo(int a)
@@ -199,7 +200,7 @@ int main()
   cout<<fibo(a);
   return 0;
 }
-zadatak 4 (bez sa neispravnim uslovima):
+zadatak 4 (sa neispravnim uslovima):
 #include<iostream>
 using namespace std;
 int main()
@@ -215,7 +216,7 @@ int main()
   cout<<a;
   return 0;
 }
-zadatak 5:
+zadatak 5: trougao
 #include <iostream>
 
 using namespace std;
@@ -260,5 +261,45 @@ int main()
     cout<<c<<endl;
     return 0;
 }
+
+
+
+zadatak: prosti brojevi
+#include<iostream>
+#include<ctime>
+using namespace std;
+bool sito[100001];
+
+void eratostenovoSito()
+{
+    for(int i=0;i<100000;i++)sito[i]=true;
+    for (int p = 2; p * p <=100000 ; p++)
+		if (sito[p] == true)
+			for (int i = p * p; i <= 100000; i += p)
+				sito[i] = false;
+}
+int main()
+{
+  srand(time(NULL));
+  eratostenovoSito();
+  int *niz= new int[100];
+  for(int i=0;i<100;i++)
+  {
+      int r;
+      do{
+          r=rand()%100000+1;
+      }while(to_string(r).length()%2==0);
+      niz[i] = r;
+  }
+  int brojac=0;
+  for(int i=0;i<100;i++)
+  if(sito[niz[i]]){
+      brojac++;
+      cout<<niz[i]<<endl;
+  }
+  cout<<"Postotak generisanja prostih brojeva: "<<brojac<<endl;
+  return 0;
+}
+
 
 */
