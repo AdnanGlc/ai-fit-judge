@@ -2,7 +2,7 @@
  
 Ova web aplikacija je rađena u React.js-u, koristeći Tailwind CSS.
 
-Pokretanje aplikacije se vrši npm komandom.
+Pokretanje aplikacije se vrši npm komandom. (Ukoliko se aplikacija ne može pokrenuti, u tom slučaju pokrenuti npm i, npm react-icons, npm run start.)
 
 Aplikacija je namijenjena za automatsko ocjenjivanje zadataka iz programiranja uz pomoć umjetne inteligencije (glavni cilj aplikacije je korištenje u obrazovnim ustanovama).
 
