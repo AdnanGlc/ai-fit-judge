@@ -14,3 +14,4 @@ Kao admin (profesor) imamo mogućnosti dodavanja novih zadataka, koje uključuje
 Također, admin ima mogućnost dodavanja i poništavanja bodova koje je sistem dodijelio.
 
 Ukoliko želite testirati našu aplikaciju bit će Vam potreban Vaš vlastiti API ključ koji možete dobiti na sljedećem linku: https://openai.com/blog/openai-api
+i postaviti ga u file sa nazivom StudentDashboard.jsx
