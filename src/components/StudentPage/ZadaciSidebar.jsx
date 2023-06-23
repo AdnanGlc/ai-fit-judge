@@ -1,11 +1,10 @@
 import React from "react";
-import "./student.css";
+
 const ZadaciSidebar = ({
   Zadaci,
   promijeniZadatak,
   zadatakIndex,
   colors,
-  filterZadatke,
   brojIspravnih,
 }) => {
   let completionColors = new Array(Zadaci.length).fill("rgb(255,255,255)");
@@ -50,12 +49,13 @@ const ZadaciSidebar = ({
     );
   }
   return (
-    <div className="student-zadaci bg-[#353535] w-[15%] h-[95vh] mt-5 ml-5 pl-[1.5%] pt-4 rounded-md min-h-[650px]">
+    <div className="student-zadaci bg-[#353535] w-[15%] h-[95vh] mt-5 ml-5 pl-[1.5%] pt-4 rounded-md min-h-[650px] relative">
       <p className="text-white font-bold text-2xl uppercase">Zadaci</p>
 
-      <ul className="border-slate-500 border-2 w-[90%] h-[85%] overflow-y-auto">
+      <ul className="border-slate-500 border-2 w-[90%] h-[85%] overflow-y-auto z-10">
         {listaZadataka}
       </ul>
+      <div className="img-bcg2 absolute right-[calc(50%-5rem)] bottom-[120px] h-32 w-40 z-0 opacity-95" />
       <p className=" w-[90%] text-center text-white text-lg uppercase font-semibold tracking-wider">
         Uradjeno: {brojIspravnih}/{Zadaci.length * 3}
       </p>

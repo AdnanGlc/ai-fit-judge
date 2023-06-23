@@ -18,7 +18,7 @@ int main()
 const StudentDashboard = () => {
   //AI api configuration
   const configuration = new Configuration({
-    apiKey: `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`,
+    apiKey: `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`,
   });
   const openai = new OpenAIApi(configuration);
   const [zadatakIndex, setZadatakIndex] = useState(0);
@@ -83,7 +83,7 @@ const StudentDashboard = () => {
     let options = {
       model: "text-davinci-003",
       temperature: 0,
-      max_tokens: 1000,
+      max_tokens: 2000,
       top_p: 1,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
@@ -175,7 +175,7 @@ zadatak:${Zadaci[zadatakIndex].tekstZadatka}\nkod:${code}\nuslovi:${Zadaci[zadat
     setRezultati(sviRezultati[index]);
   };
   return (
-    <div className="bg-white w-full h-full min-h-[800px] flex flex-wrap font-mono">
+    <div className="bg-[#d9d9d9] w-full h-full min-h-[800px] flex flex-wrap font-mono">
       <ZadaciSidebar
         Zadaci={Zadaci}
         promijeniZadatak={promijeniZadatak}

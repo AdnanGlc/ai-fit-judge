@@ -240,36 +240,11 @@ int main()
     return 0;
 }
 
-bacanje kockica:
-
-#include <iostream>
-#include<time.h>
-using namespace std;
-int main()
-{
-    srand(time(NULL));
-    int k1,k2,k3,iste=0,c=0;
-    do{
-        c++;
-        k1=rand()%6+1;
-        k2=rand()%6+1;
-        k3=rand()%6+1;
-        if(k1==k2 && k1==k3)iste++;
-        else iste=0;
-        if(iste==2)break;
-    }while(true);
-    cout<<c<<endl;
-    return 0;
-}
-
-
-
 zadatak: prosti brojevi
 #include<iostream>
 #include<ctime>
 using namespace std;
 bool sito[100001];
-
 void eratostenovoSito()
 {
     for(int i=0;i<100000;i++)sito[i]=true;

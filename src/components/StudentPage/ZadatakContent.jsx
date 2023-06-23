@@ -63,7 +63,10 @@ const ZadatakContent = ({
         </button>
         {/* ............rezultati............ */}
         {isCompiling && (
-          <div className="bg-[#d9d9d9] w-[calc(100%-8px)] left-1 h-[190px] absolute top-[428px] pt-8 text-center opacity-70">
+          <div
+            className="bg-[#d9d9d9] w-[calc(100%-8px)] left-1 h-[190px]
+           absolute top-[428px] pt-8 text-center"
+          >
             <p className="">Kod se kompajlira...</p>
             <CompilingLoader />
           </div>
@@ -75,7 +78,10 @@ const ZadatakContent = ({
         ></Rezultati>
       </div>
       {/* ---------------TEKST I POSTAVKA ZADATKA--------------- */}
-      <div className="zadatak-div h-[97%] w-[calc(90%-300px)] bg-[#353535] overflow-y-auto ml-10 border-2 border-[#353535] rounded-md">
+      <div
+        className="zadatak-div h-[97%] w-[calc(90%-300px)] bg-[#353535] overflow-y-auto 
+      ml-10 border-2 border-[#353535] rounded-md relative max-[1996px]:w-[calc(50%-300px)]"
+      >
         <button
           className="m-[1%] text-white border-2 border-white font-semibold p-2 rounded-md hover:opacity-80"
           onClick={() => promijeniPrikaz("tekstZadatka")}
@@ -129,7 +135,7 @@ const ZadatakContent = ({
                 : Zadaci[zadatakIndex].testPrimjeri[tpIndex].izlaz
             }
             className="w-[98%] m-1 bg-[#d9d9d9] rounded-md p-1 font-mono"
-          ></textarea>
+          />
         </div>
       </div>
     </div>

@@ -33,3 +33,15 @@
   background-color: white;
   font-size: 18px;
 }
+
+.img-bcg {
+  background-image: url("./memsetLogo.PNG");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.img-bcg2 {
+  background-image: url("./AIcodeJudgeLogo-NoBg.png");
+  background-size: cover;
+  background-position: center;
+}

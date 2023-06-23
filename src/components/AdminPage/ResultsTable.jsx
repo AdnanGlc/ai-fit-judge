@@ -112,9 +112,11 @@ int main()
     },
   ]);
 
-  const [message, setMessage] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
+  const [message, setMessage]          = useState("");
+  const [showAlert, setShowAlert]      = useState(false);
   const [bonusBodovi, setBonousBodovi] = useState(0);
+  const [imeZadatka, setImeZadatka]    = useState("");
+  
   const setBodovi = (studentIndex, taskIndex, bodovi) => {
     setStudentData((prevStudentData) => {
       const updatedStudentData = [...prevStudentData];
@@ -140,6 +142,7 @@ int main()
     let tempIndex = [i, j];
     setIndex(tempIndex);
     setStudentCode(StudentData[0].kodovi[j].kod);
+    setImeZadatka(Zadaci[j].imeZadatka);
   };
   const studenti = [];
   for (let i = 0; i < 100; i++) {
@@ -227,6 +230,7 @@ int main()
           >
             Dodaj
           </button>
+          <p>Zadatak: {imeZadatka}</p>
         </div>
         <Editor
           language="cpp"
@@ -238,7 +242,7 @@ int main()
           //na bodove zadatka"
           className="h-[600px] w-[400px] p-1 ml-[10%] m-5 bg-[#353535]"
           value={studentCode}
-        ></Editor>
+        />
       </div>
       {showAlert && (
         <div className="w-[400px] left-[calc(50%-200px)] z-50 absolute top-1/2 text-center pt-2 bg-[#353535] opacity-95 h-10 text-white ">
