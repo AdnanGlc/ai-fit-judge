@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import ZadaciSidebar from "./ZadaciSidebar";
 import PostavkaZadatka from "./PostavkaZadatka";
+import { Link } from "react-router-dom";
+
 
 const AdminDashboard = () => {
   return (
@@ -8,8 +10,8 @@ const AdminDashboard = () => {
       <h1 className=" m-0 w-full text-center text-3xl h-10vh p-2">
         <span class="text-5xl font-extrabold ">ISPIT</span>
       </h1>
-      <ZadaciSidebar />
-      <PostavkaZadatka />
+      <ZadaciSidebar/>
+      <PostavkaZadatka/>
     </div>
   );
 };

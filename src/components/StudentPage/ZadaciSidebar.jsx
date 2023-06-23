@@ -1,14 +1,16 @@
 import React from "react";
 import "./student.css";
+import {useAtom} from 'jotai';
+import {Zadaci} from '../database/PostavkaZadataka'
 const ZadaciSidebar = ({
-  Zadaci,
   promijeniZadatak,
   zadatakIndex,
   colors,
   filterZadatke,
   brojIspravnih,
 }) => {
-  let completionColors = new Array(Zadaci.length).fill("rgb(255,255,255)");
+  const [zadaci,setZadaci] = useAtom(Zadaci);
+  let completionColors = new Array(zadaci.length).fill("rgb(255,255,255)");
   for (let i = 0; i < colors.length; i++) {
     if (colors[i][0] === "rgb(255,255,255)") continue;
     if (
@@ -26,7 +28,7 @@ const ZadaciSidebar = ({
     else completionColors[i] = "orange";
   }
   const listaZadataka = [];
-  for (let i = 0; i < Zadaci.length; i++) {
+  for (let i = 0; i < zadaci.length; i++) {
     listaZadataka.push(
       <li
         className="flex rounded-md font-bold hover:opacity-70 relative border-[3px]"
@@ -36,7 +38,7 @@ const ZadaciSidebar = ({
           className="w-full relative text-left"
           onClick={() => promijeniZadatak(i)}
         >
-          {Zadaci[i].imeZadatka}
+          {zadaci[i].imeZadatka}
           <div
             className=" flag w-3 h-3 mt-[6px] rounded-full absolute right-0 top-0 border-[#3C6E71] border-2"
             style={{ backgroundColor: completionColors[i] }}
@@ -53,7 +55,7 @@ const ZadaciSidebar = ({
         {listaZadataka}
       </ul>
       <p className=" w-[90%] text-center text-white text-lg uppercase font-semibold tracking-wider">
-        Uradjeno: {brojIspravnih}/{Zadaci.length * 3}
+        Uradjeno: {brojIspravnih}/{zadaci.length * 3}
       </p>
     </div>
   );

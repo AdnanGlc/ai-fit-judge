@@ -1,4 +1,6 @@
-export const Zadaci = [
+
+import { atom } from 'jotai'
+export const Zadaci = atom([
   {
     zadatakID: "1",
     imeZadatka: "Paran ili Neparan",
@@ -8,8 +10,8 @@ export const Zadaci = [
     slika: "",
     podudarnost: "ispravna",
     vidljivost: "vidljiv",
-    vremeskoOgranicenje: "2000", //ms
-    istekZadatka: "10-05-2023",
+    vremenskoOgranicenje: "2000", //ms
+    istekZadatka: "2019-06-11T00:00",
     testPrimjeri: [
       { ulaz: "12", izlaz: "Paran" },
       { ulaz: "-1", izlaz: "Neparan" },
@@ -30,8 +32,8 @@ export const Zadaci = [
     slika: "",
     podudarnost: "ispravna",
     vidljivost: "vidljiv",
-    vremeskoOgranicenje: "2000", //ms
-    istekZadatka: "10-05-2023",
+    vremenskoOgranicenje: "2000", //ms
+    istekZadatka: "2019-06-11T00:00",
     testPrimjeri: [
       { ulaz: "12 23 33", izlaz: "33" },
       { ulaz: "-1 -123 -124", izlaz: "-1" },
@@ -52,9 +54,9 @@ export const Zadaci = [
       "Mora se koristiti rekurzija\nUkoliko se desio owerflow nad intom vratiti '0'",
     slika: "",
     podudarnost: "ispravna",
-    vidljivost: "vidljiv",
-    vremeskoOgranicenje: "2000", //ms
-    istekZadatka: "10-05-2023",
+    vidljivost: "nevidljiv",
+    vremenskoOgranicenje: "2000", //ms
+    istekZadatka: "2019-07-11T00:00",
     testPrimjeri: [
       { ulaz: "1", izlaz: "1" },
       { ulaz: "0", izlaz: "1" },
@@ -73,11 +75,12 @@ export const Zadaci = [
       "Omogučiti unos dva broja X i Y iz intervala od 10 do 5000. Kreirati program koji će pronaći i ispisati sve brojeve od X do Y (uključujući granične vrijednosti) za koje važi da je obrnuti broj djeljiv sa njegovom sumom cifara. Za olakšanje rješenja zadataka napraviri funkcije za obrtanje poretka cifara i za sumu cifara. Npr. Za broj 144 vrijedi da mu je suma cifara 9 i da je broj koji se dobije nakon što se njegove cifre obrnu 441, djeljiv sa 9.",
     usloviZadatka:
       "Zabranjeno koristiti pomocne biblioteke\nZabranjeno obrnuti broj uz pomoc stringova",
+    kodZadatka:"",
     slika: "",
     podudarnost: "identicna",
     vidljivost: "vidljiv",
-    vremeskoOgranicenje: "2000", //ms
-    istekZadatka: "10-05-2023",
+    vremenskoOgranicenje: "2000", //ms
+    istekZadatka: "2019-06-11T00:00",
     testPrimjeri: [
       {
         ulaz: "11 150",
@@ -122,8 +125,8 @@ export const Zadaci = [
     slika: "",
     podudarnost: "identicna",
     vidljivost: "vidljiv",
-    vremeskoOgranicenje: "2000", //ms
-    istekZadatka: "10-05-2023",
+    vremenskoOgranicenje: "2000", //ms
+    istekZadatka: "2019-06-11T00:00",
     testPrimjeri: [
       {
         ulaz: "3",
@@ -164,7 +167,9 @@ export const Zadaci = [
       },
     ],
   },
-];
+]);
+
+export const odabraniZadatak = atom({});
 //kodovi
 /*
 

@@ -67,7 +67,7 @@
 .admin-zadaci div {
   border: none;
 }
-.admin-zadaci textarea {
+.admin-zadaci textarea,.admin-zadaci input {
   border: 1px solid grey;
   background-color: white;
   padding: 5px 10px;
@@ -93,12 +93,17 @@
 }
 .primjer {
   font-weight: bold;
-  width: 45%;
   margin-top: 20px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width:48%;  
 }
 .primjer h3 {
   font-size: 18px;
   margin-bottom: 5px;
+  width: 100%;
 }
 .ispit-trajanje {
   background-color: transparent;
@@ -126,6 +131,7 @@
   padding: 7px 15px;
   letter-spacing: 1px;
   border-radius: 5px;
+  width:auto;
 }
 
 .buttons button {

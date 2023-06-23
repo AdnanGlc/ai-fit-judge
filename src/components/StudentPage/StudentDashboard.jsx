@@ -4,6 +4,7 @@ import ZadatakContent from "./ZadatakContent";
 import { Zadaci } from "../database/PostavkaZadataka";
 import axios from "axios";
 import { Configuration, OpenAIApi } from "openai";
+import {useAtom} from 'jotai';
 
 const defaultCode = `
 #include<iostream>
@@ -23,23 +24,26 @@ const StudentDashboard = () => {
   const openai = new OpenAIApi(configuration);
   const [zadatakIndex, setZadatakIndex] = useState(0);
   //----------------------------------------------//
+  const [zadaci,setZadaci] = useAtom(Zadaci);
   const [code, setCode] = useState("");
   const [rezultati, setRezultati] = useState(["", "", ""]);
   const [sviRezultati, setSviRezultati] = useState(
     new Array(Zadaci.length).fill(["", "", ""])
   );
+  console.log(zadaci)
+
   const [brojIspravnih, setBrojIspravnih] = useState(0);
   const [colors, setColors] = useState(
-    new Array(Zadaci.length).fill([
+    new Array(zadaci.length).fill([
       "rgb(255,255,255)",
       "rgb(255,255,255)",
       "rgb(255,255,255)",
     ])
   );
   const [kodovi, setKodovi] = useState(
-    new Array(Zadaci.length).fill(defaultCode)
+    new Array(zadaci.length).fill(defaultCode)
   );
-  const [prikazContent, setPrikazContent] = useState(Zadaci[0].tekstZadatka);
+  const [prikazContent, setPrikazContent] = useState(zadaci[0].tekstZadatka);
   //-------funckije-------------------------------//
   const saveCodeChange = (value) => {
     let tempKodovi = kodovi;
@@ -49,8 +53,8 @@ const StudentDashboard = () => {
   };
   const promijeniPrikaz = (p) => {
     if (p === "tekstZadatka")
-      setPrikazContent(Zadaci[zadatakIndex].tekstZadatka || "");
-    else setPrikazContent(Zadaci[zadatakIndex].usloviZadatka || "");
+      setPrikazContent(zadaci[zadatakIndex].tekstZadatka || "");
+    else setPrikazContent(zadaci[zadatakIndex].usloviZadatka || "");
   };
   //-----------------kompajliranje----------------//
   //c++ kompajliranje
@@ -107,8 +111,8 @@ const StudentDashboard = () => {
     setIsCompiling(true);
     setRezultati([]);
     const results = rezultati;
-    if (Zadaci[zadatakIndex].podudarnost === "identicna") {
-      const testCases = Zadaci[zadatakIndex].skriveniTestPrimjeri;
+    if (zadaci[zadatakIndex].podudarnost === "identicna") {
+      const testCases = zadaci[zadatakIndex].skriveniTestPrimjeri;
       for (let i = 0; i < testCases.length; i++) {
         const testCase = testCases[i];
         const result = await compileCode(testCase.ulaz);
@@ -116,15 +120,15 @@ const StudentDashboard = () => {
       }
       setRezultati(results);
     }
-    if (Zadaci[zadatakIndex].podudarnost === "ispravna") {
+    if (zadaci[zadatakIndex].podudarnost === "ispravna") {
       const tacanZadatak = await generateResponse(
         `odgovori samo sa Da ili Ne, da li kod ispunjava uslove zadatka i da li je ispravan,
-      zadatak:${Zadaci[zadatakIndex].tekstZadatka}\nuslovi:${Zadaci[zadatakIndex].usloviZadatka}\nkod:${code}`
+      zadatak:${zadaci[zadatakIndex].tekstZadatka}\nuslovi:${zadaci[zadatakIndex].usloviZadatka}\nkod:${code}`
       );
       if (tacanZadatak === true) {
-        results[0] = Zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz;
-        results[1] = Zadaci[zadatakIndex].skriveniTestPrimjeri[1].izlaz;
-        results[2] = Zadaci[zadatakIndex].skriveniTestPrimjeri[2].izlaz;
+        results[0] = zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz;
+        results[1] = zadaci[zadatakIndex].skriveniTestPrimjeri[1].izlaz;
+        results[2] = zadaci[zadatakIndex].skriveniTestPrimjeri[2].izlaz;
       }
       setRezultati(results);
     }
@@ -135,15 +139,15 @@ const StudentDashboard = () => {
     let tempAllColors = colors,
       tempColors = [],
       tempBrISpravnih = brojIspravnih;
-    if (results[0] === Zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz) {
+    if (results[0] === zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz) {
       tempColors.push("#2bc016");
       tempBrISpravnih++;
     } else tempColors.push("#ea2b1f");
-    if (results[1] === Zadaci[zadatakIndex].skriveniTestPrimjeri[1].izlaz) {
+    if (results[1] === zadaci[zadatakIndex].skriveniTestPrimjeri[1].izlaz) {
       tempColors.push("#2bc016");
       tempBrISpravnih++;
     } else tempColors.push("#ea2b1f");
-    if (results[2] === Zadaci[zadatakIndex].skriveniTestPrimjeri[2].izlaz) {
+    if (results[2] === zadaci[zadatakIndex].skriveniTestPrimjeri[2].izlaz) {
       tempColors.push("#2bc016");
       tempBrISpravnih++;
     } else tempColors.push("#ea2b1f");
@@ -158,7 +162,7 @@ const StudentDashboard = () => {
 
   //-------- filtriraje -------------//
   const filterZadatke = (searchString) => {
-    let tempZadaci = (Zadaci || []).filter((zadatak) => {
+    let tempZadaci = (zadaci || []).filter((zadatak) => {
       return zadatak.imeZadatka
         .toLocaleLowerCase()
         .includes(searchString.toLocaleLowerCase());
@@ -167,7 +171,7 @@ const StudentDashboard = () => {
   };
   //---------- use effect --------------//
   const promijeniZadatak = (index) => {
-    setPrikazContent(Zadaci[index].tekstZadatka);
+    setPrikazContent(zadaci[index].tekstZadatka);
     setZadatakIndex(index);
     setCode(kodovi[index]);
     setRezultati(sviRezultati[index]);
@@ -176,7 +180,7 @@ const StudentDashboard = () => {
     <div className="bg-white flex font-mono">
 
       <ZadaciSidebar
-        Zadaci={Zadaci}
+        Zadaci={zadaci}
         promijeniZadatak={promijeniZadatak}
         zadatakIndex={zadatakIndex}
         filterZadatke={filterZadatke}
@@ -184,7 +188,7 @@ const StudentDashboard = () => {
         brojIspravnih={brojIspravnih}
       />
       <ZadatakContent
-        Zadaci={Zadaci}
+        Zadaci={zadaci}
         zadatakIndex={zadatakIndex}
         setCode={setCode}
         kodovi={kodovi}

@@ -20,7 +20,7 @@ const ZadatakContent = ({
   //-------------- zadaci --------------//
   const [theme, setTheme] = useState("vs-dark");
   const [tpIndex, setTpIndex] = useState(0); //test primer index
-
+  console.log(Zadaci)
   return (
     //container
     <div
