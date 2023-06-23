@@ -1,5 +1,6 @@
 import { Editor } from "@monaco-editor/react";
 import React, { useState } from "react";
+import { useAtom } from "jotai";
 import { Zadaci } from "../database/PostavkaZadataka";
 
 const ResultsTable = () => {
@@ -112,11 +113,12 @@ int main()
     },
   ]);
 
-  const [message, setMessage]          = useState("");
-  const [showAlert, setShowAlert]      = useState(false);
+  const [message, setMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const [bonusBodovi, setBonousBodovi] = useState(0);
-  const [imeZadatka, setImeZadatka]    = useState("");
-  
+  const [imeZadatka, setImeZadatka] = useState("");
+  const [zadaci, setZadaci] = useAtom(Zadaci);
+
   const setBodovi = (studentIndex, taskIndex, bodovi) => {
     setStudentData((prevStudentData) => {
       const updatedStudentData = [...prevStudentData];
@@ -142,7 +144,7 @@ int main()
     let tempIndex = [i, j];
     setIndex(tempIndex);
     setStudentCode(StudentData[0].kodovi[j].kod);
-    setImeZadatka(Zadaci[j].imeZadatka);
+    setImeZadatka(zadaci[j].imeZadatka);
   };
   const studenti = [];
   for (let i = 0; i < 100; i++) {
@@ -155,7 +157,7 @@ int main()
           IB: 2200{i < 10 ? "0" : ""}
           {i}
         </td>
-        {Zadaci.map((zadatak, j) => {
+        {zadaci.map((zadatak, j) => {
           return (
             <td className="text-center border-2 min-w-[150px]" key={1231 + j}>
               <button
@@ -192,7 +194,7 @@ int main()
             <thead className="h-12 bg-[#353535] text-white sticky top-0 z-50">
               <tr>
                 <td className="p-2 w-[200px]">Zadaci:</td>
-                {Zadaci.map((zadatak) => {
+                {zadaci.map((zadatak) => {
                   return (
                     <td className="p-2 w-[200px] text-center">
                       {zadatak.imeZadatka}

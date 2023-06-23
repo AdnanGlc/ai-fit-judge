@@ -1,14 +1,14 @@
 import React from "react";
 import "./student.css";
-import {useAtom} from 'jotai';
-import {Zadaci} from '../database/PostavkaZadataka'
+import { useAtom } from "jotai";
+import { Zadaci } from "../database/PostavkaZadataka";
 const ZadaciSidebar = ({
   promijeniZadatak,
   zadatakIndex,
   colors,
   brojIspravnih,
 }) => {
-  const [zadaci,setZadaci] = useAtom(Zadaci);
+  const [zadaci, setZadaci] = useAtom(Zadaci);
   let completionColors = new Array(zadaci.length).fill("rgb(255,255,255)");
   for (let i = 0; i < colors.length; i++) {
     if (colors[i][0] === "rgb(255,255,255)") continue;
@@ -57,7 +57,6 @@ const ZadaciSidebar = ({
       <ul className="border-slate-500 border-2 w-[90%] h-[85%] overflow-y-auto z-10">
         {listaZadataka}
       </ul>
-      <div className="img-bcg2 absolute right-[calc(50%-5rem)] bottom-[120px] h-32 w-40 z-0 opacity-95" />
       <p className=" w-[90%] text-center text-white text-lg uppercase font-semibold tracking-wider">
         Uradjeno: {brojIspravnih}/{zadaci.length * 3}
       </p>
