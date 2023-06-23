@@ -41,6 +41,13 @@ int main()
         tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
       },
       {
+        kodID: "6",
+        bodovi: "100",
+        kod: `#include<iostream>using namespace std;int main(){int a,b,c;cin>>a>>b>>c; cout<<max(a,max(b,c)); return 0;}`,
+        rezultati: ["", "", ""],
+        tacnost: "3", //3-tacno, 0-netacno, 1-2-polutacno
+      },
+      {
         kodID: "1",
         bodovi: "100",
         kod: `#include<iostream>using namespace std;int main(){int a,b,c;cin>>a>>b>>c; cout<<max(a,max(b,c)); return 0;}`,

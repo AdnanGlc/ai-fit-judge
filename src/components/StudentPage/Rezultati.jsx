@@ -7,19 +7,19 @@ const Rezultati = ({ rezultati, skriveniTestPrimjeri, colors }) => {
         className="border-white border-2 border-r-0 h-full w-1/3 text-center rounded-l-lg uppercase text-[12px] pt-1 "
         style={{ backgroundColor: colors[0] }}
       >
-        test primjer 1
+        test case 1
       </div>
       <div
         className="border-2 border-white h-full w-1/3 text-center uppercase text-[12px] pt-1 "
         style={{ backgroundColor: colors[1] }}
       >
-        test primjer 2
+        test case 2
       </div>
       <div
         className="border-2 border-white h-full border-l-0 w-1/3 text-center rounded-r-lg uppercase text-[12px] pt-1"
         style={{ backgroundColor: colors[2] }}
       >
-        test primjer 3
+        test case 3
       </div>
     </div>
   );

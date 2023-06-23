@@ -24,6 +24,27 @@ export const Zadaci = atom([
     ],
   },
   {
+    zadatakID: "6",
+    imeZadatka: "Hello world",
+    tekstZadatka: "Napisi program koji ispisuje poruku Hello World!",
+    usloviZadatka: "U kodu mora biti komentar FIT-Mostar",
+    slika: "",
+    podudarnost: "ispravna",
+    vidljivost: "vidljiv",
+    vremeskoOgranicenje: "2000", //ms
+    istekZadatka: "10-05-2023",
+    testPrimjeri: [
+      { ulaz: "", izlaz: "Hello World!" },
+      { ulaz: "", izlaz: "Hello World!" },
+      { ulaz: "", izlaz: "Hello World!" },
+    ],
+    skriveniTestPrimjeri: [
+      { ulaz: "", izlaz: "Hello World!" },
+      { ulaz: "", izlaz: "Hello World!" },
+      { ulaz: "", izlaz: "Hello World!" },
+    ],
+  },
+  {
     zadatakID: "2",
     imeZadatka: "Najveci broj",
     tekstZadatka:
@@ -70,49 +91,41 @@ export const Zadaci = atom([
   },
   {
     zadatakID: "4",
-    imeZadatka: "Palindromni zbir",
-    tekstZadatka:
-      "Omogučiti unos dva broja X i Y iz intervala od 10 do 5000. Kreirati program koji će pronaći i ispisati sve brojeve od X do Y (uključujući granične vrijednosti) za koje važi da je obrnuti broj djeljiv sa njegovom sumom cifara. Za olakšanje rješenja zadataka napraviri funkcije za obrtanje poretka cifara i za sumu cifara. Npr. Za broj 144 vrijedi da mu je suma cifara 9 i da je broj koji se dobije nakon što se njegove cifre obrnu 441, djeljiv sa 9.",
+    imeZadatka: "Procenat prostih",
+    tekstZadatka: `Traziti od korisnika da u niz spremi 100 nasumicnih brojeva od 1-100000 koji imaju nepran broj cifara, te ispisati koliko je procenat generisanja prostih brojeva`,
     usloviZadatka:
-      "Zabranjeno koristiti pomocne biblioteke\nZabranjeno obrnuti broj uz pomoc stringova",
-    kodZadatka:"",
+      "Mora postojati logika koja omogućuje ponavljanje generisanja brojeva sve dok nemaju neparan broj cifara",
     slika: "",
-    podudarnost: "identicna",
+    podudarnost: "ispravna",
     vidljivost: "vidljiv",
     vremenskoOgranicenje: "2000", //ms
     istekZadatka: "2019-06-11T00:00",
     testPrimjeri: [
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: "",
+        izlaz: "",
       },
     ],
     skriveniTestPrimjeri: [
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: ".",
+        izlaz: ".",
       },
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: ".",
+        izlaz: ".",
       },
       {
-        ulaz: "11 150",
-        izlaz:
-          "12 18 20 21 24 27 30 36 40 42 45 48 50 54 60 63 70 72 80 81 84 90 100 102 108 111 115 117 120 126 135 144 ",
+        ulaz: ".",
+        izlaz: ".",
       },
     ],
   },
@@ -173,7 +186,7 @@ export const odabraniZadatak = atom({});
 //kodovi
 /*
 
-zadatak 4:
+zadatak 4: fibbonaci
 #include<iostream>
 using namespace std;
 int fibo(int a)
@@ -191,7 +204,7 @@ int main()
   cout<<fibo(a);
   return 0;
 }
-zadatak 4 (bez sa neispravnim uslovima):
+zadatak 4 (sa neispravnim uslovima):
 #include<iostream>
 using namespace std;
 int main()
@@ -207,7 +220,7 @@ int main()
   cout<<a;
   return 0;
 }
-zadatak 5:
+zadatak 5: trougao
 #include <iostream>
 
 using namespace std;
@@ -229,6 +242,42 @@ int main()
     }
     for(int i=0;i<2*n-1;i++)cout<<"#";
     return 0;
+}
+
+zadatak: prosti brojevi
+#include<iostream>
+#include<ctime>
+using namespace std;
+bool sito[100001];
+void eratostenovoSito()
+{
+    for(int i=0;i<100000;i++)sito[i]=true;
+    for (int p = 2; p * p <=100000 ; p++)
+		if (sito[p] == true)
+			for (int i = p * p; i <= 100000; i += p)
+				sito[i] = false;
+}
+int main()
+{
+  srand(time(NULL));
+  eratostenovoSito();
+  int *niz= new int[100];
+  for(int i=0;i<100;i++)
+  {
+      int r;
+      do{
+          r=rand()%100000+1;
+      }while(to_string(r).length()%2==0);
+      niz[i] = r;
+  }
+  int brojac=0;
+  for(int i=0;i<100;i++)
+  if(sito[niz[i]]){
+      brojac++;
+      cout<<niz[i]<<endl;
+  }
+  cout<<"Postotak generisanja prostih brojeva: "<<brojac<<endl;
+  return 0;
 }
 
 

@@ -19,7 +19,7 @@ int main()
 const StudentDashboard = () => {
   //AI api configuration
   const configuration = new Configuration({
-    apiKey: `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`,
+    //apiKey: `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`,
   });
   const openai = new OpenAIApi(configuration);
   const [zadatakIndex, setZadatakIndex] = useState(0);
@@ -75,7 +75,6 @@ const StudentDashboard = () => {
           },
         }
       );
-      console.log(response.data.program_output);
       return response.data.program_output;
     } catch (error) {
       console.error(error);
@@ -122,8 +121,10 @@ const StudentDashboard = () => {
     }
     if (zadaci[zadatakIndex].podudarnost === "ispravna") {
       const tacanZadatak = await generateResponse(
-        `odgovori samo sa Da ili Ne, da li kod ispunjava uslove zadatka i da li je ispravan,
-      zadatak:${zadaci[zadatakIndex].tekstZadatka}\nuslovi:${zadaci[zadatakIndex].usloviZadatka}\nkod:${code}`
+        `Odgovori sa da ili ne i obrazlozi u maksimalno 10 rijeci c++ kod,da li kod ispunjava uslove zadatka i da li je kod ispravan, i da li je sintaksa ispravna,
+ako ima bilo koja greska oznaci ga kao netacnog,\n
+zadatak:${zadaci[zadatakIndex].tekstZadatka}\nkod:${code}\nuslovi:${zadaci[zadatakIndex].usloviZadatka}
+\nUkoliko bilo koji uslov nije ispunjen odgovri sa "Ne" i obrazlozi u maksimalno 10 rijeci`
       );
       if (tacanZadatak === true) {
         results[0] = zadaci[zadatakIndex].skriveniTestPrimjeri[0].izlaz;
